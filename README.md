@@ -4,7 +4,7 @@
 ![Docker](https://img.shields.io/badge/Docker-ready-blue)
 
 > Part of the **Docs-as-Code Toolkit**  
-> → https://github.com/docs-as-code-toolkit
+> → https://github.com/docs-as-code-toolkit/docs-as-code
 
 <!-- image-description:start -->
 A lightweight Docker image for running Docs-as-Code pipelines in a fully reproducible environment — locally and in CI.
