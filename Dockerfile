@@ -10,6 +10,7 @@ LABEL org.opencontainers.image.title="docs-toolbox" \
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    asciidoctor \
     pandoc \
     graphviz \
     unzip \
