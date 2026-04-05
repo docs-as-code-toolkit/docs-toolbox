@@ -3,6 +3,9 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Docker](https://img.shields.io/badge/Docker-ready-blue)
 
+> Part of the **Docs-as-Code Toolkit**  
+> → https://github.com/docs-as-code-toolkit
+
 <!-- image-description:start -->
 A lightweight Docker image for running Docs-as-Code pipelines in a fully reproducible environment — locally and in CI.
 <!-- image-description:end -->
@@ -58,7 +61,7 @@ This image solves that by providing:
 docker run --rm \
   -v $(pwd):/workspace \
   -w /workspace \
-  ghcr.io/dieterbaier/docs-toolbox:latest \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
   ./gradlew build
 ```
 
@@ -78,7 +81,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/dieterbaier/docs-toolbox:latest
+      image: ghcr.io/docs-as-code-toolkit/docs-toolbox:latest
 
     steps:
       - uses: actions/checkout@v4
