@@ -3,7 +3,7 @@
 ![Docs-as-Code](https://img.shields.io/badge/Docs--as--Code-Toolkit-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Docker](https://img.shields.io/badge/Docker-ready-blue)
-![Docs-as-Code](https://img.shields.io/badge/Docs--as--Code-Toolkit-blue)
+
 
 > Part of the **Docs-as-Code Toolkit**  
 > → https://github.com/docs-as-code-toolkit
