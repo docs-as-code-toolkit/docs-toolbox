@@ -1,0 +1,45 @@
+---
+id: QS-002-toolchain-availability
+type: QualityScenario
+title: Toolchain Availability
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: The image should expose the documented documentation tools.
+tags:
+- quality
+- usability
+relations:
+- type: refines
+  target: DOC-01001-quality-goals
+  status: proposed
+  rationale: The scenario concretizes contributor onboarding and command availability.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[qs-002-toolchain-availability]]
+== QS-002: Toolchain Availability
+
+=== Status
+
+Proposed.
+
+=== Scenario
+
+[cols="1,3", options="header"]
+|===
+| Element | Description
+| Source | Downstream project pipeline.
+| Stimulus | Starts the image and calls a documented CLI tool.
+| Environment | Normal CI execution.
+| Artifact | Installed packages inside `docs-toolbox`.
+| Response | The command exists and returns version or help output.
+| Response Measure | `asciidoctor`, `pandoc`, `dot`, `curl`, and `unzip` version/help checks all exit successfully, and Ruby can require `asciidoctor-diagram` and `asciidoctor-diagram/plantuml`.
+|===
+
+=== Assumptions
+
+* The command names should be confirmed against the actual image entrypoint and package paths.
+* A minimal diagram rendering smoke test should confirm the Asciidoctor CLI path.

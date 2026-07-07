@@ -1,0 +1,2 @@
+Provide a lightweight, reproducible toolbox image that lets contributors run the
+same Docs-as-Code toolchain locally and in CI.

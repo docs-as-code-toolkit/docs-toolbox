@@ -1,0 +1,44 @@
+[[value-proposition-canvas]]
+= Value Proposition Canvas
+:id: CANVAS-002-value-proposition
+:status: draft
+:owner: project maintainers
+:revdate: 2026-07-07
+
+== Customer Jobs
+
+* Build AsciiDoc, Markdown, diagram, and document outputs in CI.
+* Reproduce CI documentation builds on a contributor workstation.
+* Avoid manually installing documentation toolchains.
+
+== Pains
+
+* Local and CI tool versions drift.
+* New contributors lose time on setup.
+* Hidden dependencies break documentation builds.
+
+== Gains
+
+* A ready-to-use Docs-as-Code environment.
+* Versioned image tags for deterministic builds.
+* A consistent command surface for local and CI execution.
+
+== Products And Services
+
+* `ghcr.io/docs-as-code-toolkit/docs-toolbox` container image.
+* README usage and GitHub Actions examples.
+* Build workflow that publishes GHCR tags.
+
+== Pain Relievers
+
+* Bundles Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, and curl.
+* Supports Gradle/AsciidoctorJ-based builds through the Java runtime and direct
+  Asciidoctor CLI builds through the Ruby tooling.
+* Uses a containerized environment rather than host setup.
+* Publishes Dockerfile-hash tags for traceability.
+
+== Gain Creators
+
+* Supports multi-platform image publishing.
+* Uses README marker text as package description metadata.
+* Publishes `latest` only when the commit has a Git tag, according to the workflow.

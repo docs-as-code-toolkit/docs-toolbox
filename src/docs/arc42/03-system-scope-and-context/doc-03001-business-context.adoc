@@ -1,0 +1,43 @@
+---
+id: DOC-03001-business-context
+type: Document
+title: Business Context
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Shows users and external systems around the docs-toolbox image.
+tags:
+- arc42
+- context
+relations:
+- type: refines
+  target: DOC-03000-system-scope-and-context
+  status: proposed
+  rationale: This detail page elaborates the system scope and context chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[business-context]]
+== Business Context
+
+include::../../fragments/architecture/system-boundary.adoc[]
+
+[plantuml, docs-toolbox-context, svg]
+----
+@startuml
+left to right direction
+actor "Documentation contributor" as Contributor
+actor "CI maintainer" as Maintainer
+rectangle "docs-toolbox image" as Toolbox
+cloud "GHCR" as Ghcr
+rectangle "Downstream Docs-as-Code project" as Project
+
+Contributor --> Toolbox : runs documentation commands
+Maintainer --> Project : configures CI image
+Project --> Ghcr : pulls image
+Ghcr --> Toolbox : stores published image
+Toolbox --> Contributor : provides toolchain
+@enduml
+----

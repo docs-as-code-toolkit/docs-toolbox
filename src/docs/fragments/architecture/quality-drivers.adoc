@@ -1,0 +1,2 @@
+The most important quality drivers are reproducibility, contributor onboarding
+simplicity, CI consistency, and publication traceability.

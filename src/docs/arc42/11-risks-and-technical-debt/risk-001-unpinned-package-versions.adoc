@@ -1,0 +1,51 @@
+---
+id: RISK-001-unpinned-package-versions
+type: Risk
+title: Unpinned Package Versions
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Package versions can drift when the Dockerfile installs latest repository packages.
+tags:
+- risk
+- reproducibility
+relations:
+- type: affects
+  target: QS-001-reproducible-toolchain
+  status: proposed
+  rationale: Package drift can undermine reproducibility claims across builds.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[risk-001-unpinned-package-versions]]
+== RISK-001: Unpinned Package Versions
+
+=== Status
+
+Proposed.
+
+=== Risk Statement
+
+Because the Dockerfile installs packages from distribution repositories without
+explicit package version pins, future image rebuilds may contain different tool
+versions, leading to unexpected documentation build differences.
+
+=== Assessment
+
+[cols="1,3", options="header"]
+|===
+| Field | Value
+| Likelihood | Medium.
+| Impact | Medium.
+| Priority | Medium.
+| Timeframe | Medium-term.
+| Confidence | Medium.
+|===
+
+=== Mitigation Options
+
+* Decide whether package pinning is required.
+* Add smoke tests and publish tested image references.
+* Document recommended tag pinning for downstream CI.

@@ -1,0 +1,51 @@
+---
+id: DOC-08003-testing
+type: Document
+title: Testing
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Identifies current test gaps and proposed smoke test coverage.
+tags:
+- arc42
+- testing
+relations:
+- type: refines
+  target: DOC-08000-crosscutting-concepts
+  status: proposed
+  rationale: This detail page elaborates the crosscutting concepts chapter.
+  reviewed: false
+- type: verifies
+  target: QS-002-toolchain-availability
+  status: proposed
+  rationale: Smoke tests should verify documented tool commands are present.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[testing]]
+== Testing
+
+No automated tests were found in the repository during this migration.
+
+Proposed smoke tests:
+
+* Build the Docker image.
+* Run `asciidoctor --version`.
+* Run `ruby -e 'require "asciidoctor-diagram"'`.
+* Run `ruby -e 'require "asciidoctor-diagram/plantuml"'`.
+* Run `pandoc --version`.
+* Run `dot -V`.
+* Run `curl --version`.
+* Run `unzip -v`.
+* Render a minimal PlantUML block through `asciidoctor -r asciidoctor-diagram`.
+
+These tests would turn README claims about available tools into executable
+evidence.
+
+Current documentation checks:
+
+* Pull requests run `./build.sh validate`.
+* The main branch Pages workflow runs `./build.sh build`.
+* `build.sh validate` runs `ruby scripts/validate-metamodel.rb --generate`.

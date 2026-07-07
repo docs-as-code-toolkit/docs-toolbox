@@ -1,0 +1,40 @@
+---
+id: DOC-08002-security
+type: Document
+title: Security
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Records security concepts for image publication and consumption.
+tags:
+- arc42
+- security
+relations:
+- type: refines
+  target: DOC-08000-crosscutting-concepts
+  status: proposed
+  rationale: This detail page elaborates the crosscutting concepts chapter.
+  reviewed: false
+- type: mitigates
+  target: RISK-002-registry-publication-credentials
+  status: proposed
+  rationale: Credential handling and permissions reduce registry publication risk.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[security]]
+== Security
+
+Current evidence:
+
+* Workflow requests `contents: read` and `packages: write`.
+* GHCR login uses `${{ secrets.GHCR_PAT }}` via standard input.
+* The Dockerfile removes `/var/lib/apt/lists/*` after package installation.
+
+Open security decisions:
+
+* Whether image signing is required.
+* Whether vulnerability scanning is required before publishing.
+* Whether the GHCR token can be replaced with `GITHUB_TOKEN` permissions.

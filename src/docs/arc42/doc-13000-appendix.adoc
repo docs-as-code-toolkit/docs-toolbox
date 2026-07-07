@@ -1,0 +1,22 @@
+---
+id: DOC-13000-appendix
+type: Document
+title: Appendix
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Includes open questions and generated traceability information.
+tags:
+- arc42
+- appendix
+relations: []
+metadata_version: '1.0'
+---
+[[appendix]]
+= Appendix
+
+include::../doc-005-questions-and-answers.adoc[leveloffset=+1]
+
+include::../generated/traceability-matrix.adoc[leveloffset=+1]

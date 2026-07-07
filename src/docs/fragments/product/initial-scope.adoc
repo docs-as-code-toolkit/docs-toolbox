@@ -1,0 +1,3 @@
+Initial scope covers a Docker image with OpenJDK, Asciidoctor,
+Asciidoctor Diagram, Pandoc, Graphviz, unzip, curl, GHCR publishing, README
+usage guidance, and MIT licensing.

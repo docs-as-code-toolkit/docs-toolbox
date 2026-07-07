@@ -1,0 +1,31 @@
+[[architecture-communication-canvas]]
+= Architecture Communication Canvas
+:id: CANVAS-004-architecture-communication
+:status: draft
+:owner: architecture
+:revdate: 2026-07-07
+
+== Audiences
+
+* Maintainers deciding toolchain changes.
+* Contributors using the image locally.
+* CI maintainers pinning image tags.
+
+== Messages
+
+* The image is the single source of truth for the documentation toolchain.
+* Version pinning is preferred for reproducibility.
+* Hash tags identify the Dockerfile content used to build an image.
+
+== Channels
+
+* `README.md`
+* `src/docs/`
+* GitHub Actions workflow logs
+* GHCR package metadata
+
+== Review Needs
+
+* Human review of proposed architecture documentation.
+* Maintainer confirmation of tag semantics and supported platforms.
+* Maintainer confirmation of which installed tools are part of the supported contract.

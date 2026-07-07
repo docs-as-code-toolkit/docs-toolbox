@@ -1,0 +1,20 @@
+---
+id: DOC-12000-glossary
+type: Document
+title: Glossary
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Defines terms used by docs-toolbox architecture documentation.
+tags:
+- arc42
+- glossary
+relations: []
+metadata_version: '1.0'
+---
+[[glossary]]
+= Glossary
+
+include::generated/doc-12000-glossary-includes.adoc[]

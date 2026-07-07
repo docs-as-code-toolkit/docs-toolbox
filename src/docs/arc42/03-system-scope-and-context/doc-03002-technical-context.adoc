@@ -1,0 +1,32 @@
+---
+id: DOC-03002-technical-context
+type: Document
+title: Technical Context
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Identifies technical interfaces for building, publishing, and running the image.
+tags:
+- arc42
+- context
+relations:
+- type: refines
+  target: DOC-03000-system-scope-and-context
+  status: proposed
+  rationale: This detail page elaborates the system scope and context chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[technical-context]]
+== Technical Context
+
+[cols="1,2,3", options="header"]
+|===
+| Interface | Partner | Description
+| Docker build context | Docker Buildx | The workflow builds the repository root using `Dockerfile`.
+| GHCR registry API | GHCR | The workflow authenticates and pushes built images.
+| Container command execution | Docker or CI runtime | Callers mount a workspace and run documentation commands inside the image.
+| README marker block | GitHub Actions shell step | The workflow extracts package description metadata from README markers.
+|===

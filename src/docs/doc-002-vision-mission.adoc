@@ -1,0 +1,20 @@
+[[vision-mission]]
+= Vision And Mission
+:id: DOC-002-vision-mission
+:status: draft
+:owner: project maintainers
+:revdate: 2026-07-07
+
+== Vision
+
+include::fragments/product/vision-statement.adoc[]
+
+== Mission
+
+include::fragments/product/mission-statement.adoc[]
+
+== Evidence
+
+* `README.md` describes the image as a lightweight Docker image for reproducible Docs-as-Code pipelines.
+* `Dockerfile` installs documentation tools and declares OCI image metadata.
+* `.github/workflows/create-docs-toolbox-image.yml` builds and publishes the image to GHCR.

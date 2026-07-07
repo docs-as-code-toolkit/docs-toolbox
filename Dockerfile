@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     graphviz \
     unzip \
     curl \
+    && gem install --no-document asciidoctor-diagram asciidoctor-diagram-plantuml \
     && rm -rf /var/lib/apt/lists/*
 
 # Arbeitsverzeichnis

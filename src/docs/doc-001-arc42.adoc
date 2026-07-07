@@ -1,0 +1,117 @@
+---
+id: DOC-001-arc42
+type: Document
+title: docs-toolbox Architecture
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Assembled arc42 entry point for the docs-toolbox container image.
+tags:
+- arc42
+- documentation
+relations:
+- type: documents
+  target: DOC-01000-introduction-and-goals
+  status: proposed
+  rationale: The assembled architecture includes the introduction and goals chapter.
+  reviewed: false
+- type: documents
+  target: DOC-02000-architecture-constraints
+  status: proposed
+  rationale: The assembled architecture includes the architecture constraints chapter.
+  reviewed: false
+- type: documents
+  target: DOC-03000-system-scope-and-context
+  status: proposed
+  rationale: The assembled architecture includes the system scope and context chapter.
+  reviewed: false
+- type: documents
+  target: DOC-04000-solution-strategy
+  status: proposed
+  rationale: The assembled architecture includes the solution strategy chapter.
+  reviewed: false
+- type: documents
+  target: DOC-05000-building-block-view
+  status: proposed
+  rationale: The assembled architecture includes the building block view chapter.
+  reviewed: false
+- type: documents
+  target: DOC-06000-runtime-view
+  status: proposed
+  rationale: The assembled architecture includes the runtime view chapter.
+  reviewed: false
+- type: documents
+  target: DOC-07000-deployment-view
+  status: proposed
+  rationale: The assembled architecture includes the deployment view chapter.
+  reviewed: false
+- type: documents
+  target: DOC-08000-crosscutting-concepts
+  status: proposed
+  rationale: The assembled architecture includes the crosscutting concepts chapter.
+  reviewed: false
+- type: documents
+  target: DOC-09000-architecture-decisions
+  status: proposed
+  rationale: The assembled architecture includes the architecture decisions chapter.
+  reviewed: false
+- type: documents
+  target: DOC-10000-quality-requirements
+  status: proposed
+  rationale: The assembled architecture includes the quality requirements chapter.
+  reviewed: false
+- type: documents
+  target: DOC-11000-risks-and-technical-debt
+  status: proposed
+  rationale: The assembled architecture includes the risks and technical debt chapter.
+  reviewed: false
+- type: documents
+  target: DOC-12000-glossary
+  status: proposed
+  rationale: The assembled architecture includes the glossary chapter.
+  reviewed: false
+- type: documents
+  target: DOC-13000-appendix
+  status: proposed
+  rationale: The assembled architecture includes the appendix chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[docs-toolbox-architecture]]
+= docs-toolbox Architecture
+:toc: left
+:toclevels: 3
+:sectnums:
+
+This assembled architecture is a draft adaptation of the repository's existing
+artifacts into the architecture-knowledge-toolkit structure. It treats local
+files as evidence and records uncertain claims as open questions or proposed
+architecture artifacts.
+
+include::arc42/doc-01000-introduction-and-goals.adoc[leveloffset=+1]
+
+include::arc42/doc-02000-architecture-constraints.adoc[leveloffset=+1]
+
+include::arc42/doc-03000-system-scope-and-context.adoc[leveloffset=+1]
+
+include::arc42/doc-04000-solution-strategy.adoc[leveloffset=+1]
+
+include::arc42/doc-05000-building-block-view.adoc[leveloffset=+1]
+
+include::arc42/doc-06000-runtime-view.adoc[leveloffset=+1]
+
+include::arc42/doc-07000-deployment-view.adoc[leveloffset=+1]
+
+include::arc42/doc-08000-crosscutting-concepts.adoc[leveloffset=+1]
+
+include::arc42/doc-09000-architecture-decisions.adoc[leveloffset=+1]
+
+include::arc42/doc-10000-quality-requirements.adoc[leveloffset=+1]
+
+include::arc42/doc-11000-risks-and-technical-debt.adoc[leveloffset=+1]
+
+include::arc42/doc-12000-glossary.adoc[leveloffset=+1]
+
+include::arc42/doc-13000-appendix.adoc[leveloffset=+1]

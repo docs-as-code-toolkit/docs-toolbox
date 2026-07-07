@@ -1,0 +1,45 @@
+[[techstack-canvas]]
+= Techstack Canvas
+:id: CANVAS-005-techstack
+:status: draft
+:owner: architecture
+:revdate: 2026-07-07
+
+== Runtime And Packaging
+
+* Docker/OCI image.
+* Base image: `openjdk:22-jdk-slim`.
+* Working directory: `/app`.
+* Empty entrypoint so callers can run arbitrary commands.
+
+== Documentation Tools
+
+* Asciidoctor.
+* Asciidoctor Diagram.
+* Asciidoctor Diagram PlantUML support.
+* PlantUML diagram rendering through the Ruby Asciidoctor CLI path.
+* Pandoc.
+* Graphviz.
+
+== Java-Based Documentation Builds
+
+* OpenJDK 22.
+* Gradle projects can use AsciidoctorJ plugins inside the toolbox image.
+
+== Utility Tools
+
+* unzip.
+* curl.
+
+== Build And Release
+
+* GitHub Actions.
+* Docker Buildx.
+* QEMU setup action for multi-platform builds.
+* GHCR image registry.
+
+== Open Validation Topics
+
+* Whether package versions need explicit pinning.
+* Whether additional documentation tools are part of the supported scope.
+* Whether `/app` or caller-provided `-w /workspace` is the intended default working directory contract.

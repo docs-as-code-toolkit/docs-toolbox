@@ -1,0 +1,2 @@
+Package the documentation build tools used by Docs-as-Code pipelines into one
+versioned container image so teams can reduce local setup effort and CI drift.

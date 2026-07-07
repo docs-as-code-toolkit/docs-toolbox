@@ -1,0 +1,34 @@
+[[architecture-inception-canvas]]
+= Architecture Inception Canvas
+:id: CANVAS-003-architecture-inception
+:status: draft
+:owner: architecture
+:revdate: 2026-07-07
+
+== System Purpose
+
+`docs-toolbox` provides a reproducible containerized documentation toolchain for
+Docs-as-Code pipelines.
+
+== Scope
+
+include::../fragments/product/initial-scope.adoc[]
+
+== Out Of Scope
+
+include::../fragments/product/out-of-scope.adoc[]
+
+== Quality Drivers
+
+include::../fragments/architecture/quality-drivers.adoc[]
+
+== Key Constraints
+
+* Docker/OCI image delivery.
+* Current base image is `openjdk:22-jdk-slim`.
+* Current package installation depends on Debian package repositories.
+* Publishing workflow depends on GitHub Actions, Docker Buildx, GHCR, and `GHCR_PAT`.
+
+== Initial Architecture Questions
+
+See xref:canvas-questions-and-answers[].

@@ -1,0 +1,32 @@
+---
+id: DOC-08004-observability
+type: Document
+title: Observability
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes observable outputs from usage and publication workflows.
+tags:
+- arc42
+- observability
+relations:
+- type: refines
+  target: DOC-08000-crosscutting-concepts
+  status: proposed
+  rationale: This detail page elaborates the crosscutting concepts chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[observability]]
+== Observability
+
+Observable signals currently visible from repository evidence:
+
+* Docker command exit codes and standard output for local usage.
+* GitHub Actions logs for image name, tags, README description, and summary.
+* GHCR package tags and annotations after a successful build.
+
+No runtime application logs, metrics, traces, or audit trails exist inside the
+image because the image is a toolbox environment, not a long-running service.

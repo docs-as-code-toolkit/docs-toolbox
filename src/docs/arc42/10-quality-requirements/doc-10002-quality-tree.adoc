@@ -1,0 +1,31 @@
+---
+id: DOC-10002-quality-tree
+type: Document
+title: Quality Tree
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Relates top-level quality goals to proposed quality scenarios.
+tags:
+- arc42
+- quality
+relations:
+- type: refines
+  target: DOC-10000-quality-requirements
+  status: proposed
+  rationale: This detail page elaborates the quality requirements chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[quality-tree]]
+== Quality Tree
+
+* Reproducibility
+** xref:qs-001-reproducible-toolchain[QS-001: Reproducible Toolchain]
+** xref:qs-003-publication-traceability[QS-003: Publication Traceability]
+* Usability
+** xref:qs-002-toolchain-availability[QS-002: Toolchain Availability]
+* Maintainability
+** Candidate: automated smoke tests for all supported tools.

@@ -1,0 +1,64 @@
+---
+id: DOC-06001-local-usage
+type: Document
+title: Local Usage Runtime Scenario
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes how a contributor runs a documentation command in the image.
+tags:
+- arc42
+- runtime
+relations:
+- type: refines
+  target: DOC-06000-runtime-view
+  status: proposed
+  rationale: This detail page elaborates the runtime view chapter.
+  reviewed: false
+- type: addresses
+  target: QS-001-reproducible-toolchain
+  status: proposed
+  rationale: Local usage is the primary reproducibility workflow.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[local-usage-runtime-scenario]]
+== Local Usage Runtime Scenario
+
+[plantuml, docs-toolbox-local-usage, svg]
+----
+@startuml
+actor Contributor
+participant "Docker runtime" as Docker
+participant "docs-toolbox image" as Image
+participant "Mounted workspace" as Workspace
+
+Contributor -> Docker : docker run --rm -v project:/workspace -w /workspace image command
+Docker -> Image : start container
+Image -> Workspace : read documentation sources
+Image --> Contributor : command output and exit code
+@enduml
+----
+
+The README example runs `asciidoctor -v` in the toolbox container.
+
+=== Architecture Documentation Build
+
+For this repository itself, `./build.sh build` validates architecture metadata,
+generates derived fragments, and renders `src/docs/doc-001-arc42.adoc` to
+`build/architecture/index.html` with Asciidoctor and `asciidoctor-diagram`.
+Generated diagram assets are written beside the HTML output.
+
+This is intentional dogfooding: the architecture documentation for the toolbox is
+generated with the toolbox image itself whenever a container engine is available.
+
+The script first computes the local Dockerfile hash and tries to pull
+`ghcr.io/docs-as-code-toolkit/docs-toolbox:df-<hash>`. If that image is not
+available, the script builds a local image from the current Dockerfile before
+running the documentation build. This keeps local Dockerfile changes visible to
+the build without requiring Gradle.
+
+Gradle projects can still use AsciidoctorJ inside the same toolbox image. This
+repository's direct CLI build uses the Ruby Asciidoctor path.

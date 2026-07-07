@@ -1,0 +1,3 @@
+Out of scope for the current repository evidence are project-specific build
+scripts, hosted documentation publishing, user management, SaaS operation, and
+application runtime behavior beyond the container image itself.

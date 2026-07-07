@@ -1,0 +1,24 @@
+---
+id: DOC-09000-architecture-decisions
+type: Document
+title: Architecture Decisions
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Records proposed ADRs and missing decision candidates.
+tags:
+- arc42
+- decisions
+relations: []
+metadata_version: '1.0'
+---
+[[architecture-decisions]]
+= Architecture Decisions
+
+include::09-architecture-decisions/generated/doc-09001-adr-index.adoc[]
+
+include::09-architecture-decisions/generated/open-questions.adoc[]
+
+include::generated/doc-09000-architecture-decisions-includes.adoc[]

@@ -1,0 +1,95 @@
+---
+id: ADR-001-containerized-docs-toolchain
+type: ADR
+title: Containerized Docs Toolchain
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Proposes treating the Docker image as the supported distribution unit for the Docs-as-Code toolchain.
+tags:
+- adr
+- container
+relations:
+- type: addresses
+  target: QS-001-reproducible-toolchain
+  status: proposed
+  rationale: A container image supports reproducible local and CI toolchain execution.
+  reviewed: false
+- type: introduces_risk
+  target: RISK-001-unpinned-package-versions
+  status: proposed
+  rationale: Container builds based on unpinned package repositories may drift over time.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[adr-001-containerized-docs-toolchain]]
+== ADR-001: Containerized Docs Toolchain
+
+=== Status
+
+Proposed.
+
+This ADR is derived from existing repository evidence and requires maintainer
+review before it becomes accepted architecture truth.
+
+=== Decision
+
+We propose to treat the `docs-toolbox` Docker image as the supported
+distribution unit for the documentation toolchain.
+
+=== Context
+
+The README describes the image as the single source of truth for the
+documentation toolchain. The Dockerfile packages OpenJDK plus documentation
+tools. The workflow publishes the image to GHCR.
+
+=== Decision Drivers
+
+* Reproducible local and CI builds.
+* Low contributor setup effort.
+* Traceable image publication.
+
+=== Considered Options
+
+==== Option 1: Containerized Toolbox Image
+
+Package the toolchain as a Docker image.
+
+==== Option 2: Host Installation Documentation
+
+Document installation commands for each supported host environment.
+
+==== Option 3: Project-Specific CI Setup
+
+Let every downstream project install tools in its own pipeline.
+
+=== Pugh Matrix
+
+[.pugh-matrix]
+[cols="2,1,1,1", options="header"]
+|===
+| Criterion | Container image | Host installation | Project-specific CI
+| Reproducibility | +1 | -1 | -1
+| Contributor onboarding | +1 | -1 | 0
+| CI consistency | +1 | -1 | -1
+| Maintenance simplicity | 0 | -1 | -1
+s| Sum s| 3 s| -4 s| -3
+|===
+
+=== Consequences
+
+==== Positive
+
+* Downstream users can run the same image locally and in CI.
+* Maintainers can publish traceable image tags.
+
+==== Negative
+
+* Image rebuilds may drift if upstream package versions change.
+* Users need Docker or a compatible container runtime.
+
+==== Neutral or Follow-Up
+
+* Maintainers should decide whether package versions need explicit pinning.

@@ -1,0 +1,41 @@
+---
+id: DOC-02001-toolbox-constraints
+type: Document
+title: Toolbox Constraints
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Captures binding constraints currently visible in repository files.
+tags:
+- arc42
+- constraints
+relations:
+- type: refines
+  target: DOC-02000-architecture-constraints
+  status: proposed
+  rationale: This detail page elaborates the architecture constraints chapter.
+  reviewed: false
+- type: constrains
+  target: ADR-001-containerized-docs-toolchain
+  status: proposed
+  rationale: Existing repository evidence already centers delivery on a Docker image.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[toolbox-constraints]]
+== Toolbox Constraints
+
+[cols="1,3,3", options="header"]
+|===
+| Constraint | Description | Evidence
+| Container delivery | The supported toolchain is packaged as an OCI/Docker image. | README and Dockerfile.
+| Base image | The current base is `openjdk:22-jdk-slim`. | Dockerfile `FROM` line.
+| Installed packages | Tools are installed with `apt-get install`. | Dockerfile package installation.
+| GHCR publication | Images are published to `ghcr.io/${GITHUB_REPOSITORY_OWNER}/docs-toolbox`. | Workflow `Set image name` step.
+| Multi-platform build | Workflow builds `linux/amd64` and `linux/arm64`. | Workflow `docker buildx build` command.
+| MIT license | Use and distribution follow MIT license terms. | `LICENSE.md`.
+|===
+
+Open constraints are recorded in xref:canvas-questions-and-answers[].

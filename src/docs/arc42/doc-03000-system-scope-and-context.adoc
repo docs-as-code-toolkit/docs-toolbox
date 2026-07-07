@@ -1,0 +1,20 @@
+---
+id: DOC-03000-system-scope-and-context
+type: Document
+title: System Scope And Context
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Defines the docs-toolbox image boundary and external systems.
+tags:
+- arc42
+- context
+relations: []
+metadata_version: '1.0'
+---
+[[system-scope-and-context]]
+= System Scope And Context
+
+include::generated/doc-03000-system-scope-and-context-includes.adoc[]

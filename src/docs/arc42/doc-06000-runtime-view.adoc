@@ -1,0 +1,20 @@
+---
+id: DOC-06000-runtime-view
+type: Document
+title: Runtime View
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes usage, publication, and failure/recovery runtime scenarios.
+tags:
+- arc42
+- runtime
+relations: []
+metadata_version: '1.0'
+---
+[[runtime-view]]
+= Runtime View
+
+include::generated/doc-06000-runtime-view-includes.adoc[]

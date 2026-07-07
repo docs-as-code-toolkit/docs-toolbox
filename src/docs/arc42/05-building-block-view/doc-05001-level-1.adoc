@@ -1,0 +1,59 @@
+---
+id: DOC-05001-level-1
+type: Document
+title: Level 1 Building Blocks
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes the top-level building blocks of docs-toolbox.
+tags:
+- arc42
+- building-blocks
+relations:
+- type: refines
+  target: DOC-05000-building-block-view
+  status: proposed
+  rationale: This detail page elaborates the building block view chapter.
+  reviewed: false
+- type: affects
+  target: QS-002-toolchain-availability
+  status: proposed
+  rationale: Installed toolchain packages determine whether documented commands are available.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[level-1-building-blocks]]
+== Level 1 Building Blocks
+
+[plantuml, docs-toolbox-building-blocks, svg]
+----
+@startuml
+!include <C4/C4_Container>
+
+Person(user, "Docs-as-Code user", "Runs documentation commands")
+System_Boundary(toolbox, "docs-toolbox") {
+  Container(image, "OCI image", "Docker", "Runtime environment for documentation commands")
+  Container(toolchain, "Documentation toolchain", "Debian packages and Ruby gem", "Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, curl")
+  Container(metadata, "Image metadata", "OCI labels and annotations", "Title, description, source, license")
+}
+System_Ext(ghcr, "GHCR", "Container registry")
+System_Ext(workflow, "GitHub Actions workflow", "Builds and publishes images")
+
+Rel(user, image, "Runs commands in")
+Rel(image, toolchain, "Contains")
+Rel(workflow, image, "Builds")
+Rel(workflow, ghcr, "Pushes")
+Rel(metadata, ghcr, "Describes package")
+@enduml
+----
+
+[cols="1,2,2,2", options="header"]
+|===
+| Building Block | Responsibility | Interface | Storage Location
+| OCI image | Provide a runnable documentation toolbox environment. | Docker image command execution. | Built from `Dockerfile`, published to GHCR.
+| Documentation toolchain | Provide Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, and curl. | CLI commands and Asciidoctor Ruby extensions inside the image. | Installed by `apt-get` and `gem install` in `Dockerfile`.
+| Build workflow | Build, tag, and push the image. | GitHub Actions workflow dispatch, push, and tag events. | `.github/workflows/create-docs-toolbox-image.yml`.
+| README description marker | Provide package description metadata. | Marker block parsed by workflow shell step. | `README.md`.
+|===

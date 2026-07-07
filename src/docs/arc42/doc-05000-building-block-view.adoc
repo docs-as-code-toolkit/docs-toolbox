@@ -1,0 +1,20 @@
+---
+id: DOC-05000-building-block-view
+type: Document
+title: Building Block View
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes the image, installed toolchain, and publication workflow as building blocks.
+tags:
+- arc42
+- building-blocks
+relations: []
+metadata_version: '1.0'
+---
+[[building-block-view]]
+= Building Block View
+
+include::generated/doc-05000-building-block-view-includes.adoc[]
