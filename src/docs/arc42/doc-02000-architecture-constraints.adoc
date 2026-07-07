@@ -1,0 +1,23 @@
+---
+id: DOC-02000-architecture-constraints
+type: Document
+title: Architecture Constraints
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Records externally visible constraints from the Dockerfile, workflow, and repository policy.
+tags:
+- arc42
+- constraints
+relations: []
+metadata_version: '1.0'
+---
+[[architecture-constraints]]
+= Architecture Constraints
+
+The current constraints are derived from the existing Dockerfile, workflow, and
+license files.
+
+include::generated/doc-02000-architecture-constraints-includes.adoc[]

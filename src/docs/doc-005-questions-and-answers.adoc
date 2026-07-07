@@ -1,0 +1,64 @@
+[[canvas-questions-and-answers]]
+= Questions And Answers
+:id: DOC-005-questions-and-answers
+:status: draft
+:owner: project maintainers
+:revdate: 2026-07-07
+
+This document records open questions and assumptions discovered while adapting
+existing repository artifacts into the toolkit documentation structure.
+
+== Open Questions For Product Owner
+
+[[q-po-001]]
+=== Q-PO-001: Which installed tools are part of the supported contract?
+
+Answer: Open.
+
+Evidence currently shows Asciidoctor, Asciidoctor Diagram, Asciidoctor
+reveal.js, Pandoc, Graphviz, unzip, curl, and OpenJDK in the Dockerfile. It is
+not yet reviewed whether all of them are long-term supported features or
+implementation conveniences.
+
+[[q-po-002]]
+=== Q-PO-002: What tag should users pin for reproducible CI builds?
+
+Answer: Open.
+
+The workflow publishes `df-<hash>` tags and, on Git-tagged commits, the Git tag
+and `latest`. Maintainers should confirm recommended user guidance.
+
+[[q-po-003]]
+=== Q-PO-003: Should package versions be pinned inside the Dockerfile?
+
+Answer: Open.
+
+The current Dockerfile installs packages from the base distribution repositories
+without explicit package version pins.
+
+== Open Questions For Architecture
+
+[[q-arch-001]]
+=== Q-ARCH-001: Is `openjdk:22-jdk-slim` the intentional long-term base?
+
+Answer: Open.
+
+The Dockerfile uses this base image. The architectural rationale and update
+policy are not recorded yet.
+
+[[q-arch-002]]
+=== Q-ARCH-002: What smoke tests should verify image readiness?
+
+Answer: Open.
+
+No automated tests were found in this repository. A candidate is verifying the
+version command for each supported CLI tool.
+
+[[q-arch-003]]
+=== Q-ARCH-003: Should Reveal.js assets be bundled in the toolbox image?
+
+Answer: Open.
+
+The image now provides the `asciidoctor-revealjs` converter. Slide rendering
+still needs a `revealjsdir` value that points to CDN-hosted, vendored, or local
+Reveal.js frontend assets.

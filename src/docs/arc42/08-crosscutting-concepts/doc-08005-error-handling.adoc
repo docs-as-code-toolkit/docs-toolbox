@@ -1,0 +1,31 @@
+---
+id: DOC-08005-error-handling
+type: Document
+title: Error Handling
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Captures error handling behavior from shell scripts and Docker usage.
+tags:
+- arc42
+- error-handling
+relations:
+- type: refines
+  target: DOC-08000-crosscutting-concepts
+  status: proposed
+  rationale: This detail page elaborates the crosscutting concepts chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[error-handling]]
+== Error Handling
+
+The workflow shell steps use `set -euo pipefail` in the tag computation,
+description extraction, and build/push steps. This means most command failures
+fail the workflow instead of being silently ignored.
+
+The README description extraction step has a fallback description if the marker
+block is absent or empty. Docker command failures are surfaced through the
+container process exit code.

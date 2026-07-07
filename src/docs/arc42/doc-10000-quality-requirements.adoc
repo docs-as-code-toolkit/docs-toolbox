@@ -1,0 +1,22 @@
+---
+id: DOC-10000-quality-requirements
+type: Document
+title: Quality Requirements
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Records top-level quality goals and proposed measurable quality scenarios.
+tags:
+- arc42
+- quality
+relations: []
+metadata_version: '1.0'
+---
+[[quality-requirements]]
+= Quality Requirements
+
+include::10-quality-requirements/generated/doc-10001-quality-scenarios.adoc[]
+
+include::generated/doc-10000-quality-requirements-includes.adoc[]

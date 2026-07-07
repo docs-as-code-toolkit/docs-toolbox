@@ -1,0 +1,4 @@
+The system boundary is the `docs-toolbox` container image and its publication
+workflow. It contains the installed documentation toolchain and OCI metadata.
+Projects using the image, GitHub Actions runners, GHCR, and contributor
+workstations are external actors or systems.

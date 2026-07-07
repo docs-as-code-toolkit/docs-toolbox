@@ -1,0 +1,24 @@
+[[roadmap]]
+= Roadmap
+:id: DOC-004-roadmap
+:status: draft
+:owner: project maintainers
+:revdate: 2026-07-07
+
+== Now
+
+* Bootstrap toolkit-compatible architecture documentation from repository evidence.
+* Validate and generate traceability fragments from source metadata.
+* Keep README, Dockerfile, workflow, and architecture docs aligned.
+
+== Next
+
+* Confirm supported tool versions and tag policy with maintainers.
+* Add a smoke test for expected CLI tools in the built image.
+* Decide whether base image and package versions require pinning.
+
+== Later
+
+* Define a release policy for stable image tags.
+* Consider automated README-to-image-contract checks.
+* Consider documenting compatibility guarantees for downstream projects.

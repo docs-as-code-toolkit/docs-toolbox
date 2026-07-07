@@ -1,0 +1,45 @@
+---
+id: DOC-06002-image-publication
+type: Document
+title: Image Publication Runtime Scenario
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes the GitHub Actions image build and push workflow.
+tags:
+- arc42
+- runtime
+relations:
+- type: refines
+  target: DOC-06000-runtime-view
+  status: proposed
+  rationale: This detail page elaborates the runtime view chapter.
+  reviewed: false
+- type: addresses
+  target: QS-003-publication-traceability
+  status: proposed
+  rationale: The publication scenario creates traceable image tags and metadata.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[image-publication-runtime-scenario]]
+== Image Publication Runtime Scenario
+
+[plantuml, docs-toolbox-publication, svg]
+----
+@startuml
+actor Maintainer
+participant "GitHub Actions" as Actions
+participant "Docker Buildx" as Buildx
+database "GHCR" as Ghcr
+
+Maintainer -> Actions : push to main, push tag, or workflow_dispatch
+Actions -> Actions : compute image name and tags
+Actions -> Actions : extract README description
+Actions -> Buildx : build linux/amd64 and linux/arm64
+Buildx -> Ghcr : push tags and cache
+Actions --> Maintainer : print hash tag and publication summary
+@enduml
+----

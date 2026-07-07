@@ -1,0 +1,33 @@
+---
+id: DOC-07001-local-and-ci
+type: Document
+title: Local And CI Deployment
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes local, CI, and registry deployment environments.
+tags:
+- arc42
+- deployment
+relations:
+- type: refines
+  target: DOC-07000-deployment-view
+  status: proposed
+  rationale: This detail page elaborates the deployment view chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[local-and-ci-deployment]]
+== Local And CI Deployment
+
+[cols="1,2,3", options="header"]
+|===
+| Environment | Deployment Form | Notes
+| Contributor workstation | Docker container run with mounted workspace. | README uses `docker run --rm -v $(pwd):/workspace -w /workspace`.
+| GitHub Actions runner | Job container or image build environment. | README shows the image as a job container; workflow builds with Buildx.
+| GHCR | Published multi-platform image. | Workflow pushes `linux/amd64` and `linux/arm64` images.
+| Downstream CI | Pinned image reference. | README recommends pinning versions for determinism.
+| GitHub Pages | Static architecture HTML generated from `src/docs/doc-001-arc42.adoc`. | `.github/workflows/architecture-docs.yml` uploads `build/architecture` to the expected URL `https://docs-as-code-toolkit.github.io/docs-toolbox/` after the first successful deployment.
+|===

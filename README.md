@@ -24,6 +24,9 @@ Unlike ad-hoc setups, this image is designed to be **the single source of truth 
 - Reproducible documentation builds across environments
 - Zero-setup onboarding for contributors
 - Consistent toolchain in local and CI workflows
+- Diagram rendering without project-specific host setup
+- Reveal.js presentation builds from AsciiDoc sources
+- Direct Asciidoctor CLI builds and Gradle/AsciidoctorJ builds in the same runtime
 
 ---
 
@@ -32,9 +35,12 @@ Unlike ad-hoc setups, this image is designed to be **the single source of truth 
 This image provides a ready-to-use toolchain for **Docs-as-Code pipelines**:
 
 - Asciidoctor
+- Asciidoctor Diagram with PlantUML support
+- Asciidoctor reveal.js converter
 - Pandoc
 - Graphviz
 - Common CLI utilities
+- Java runtime support for Gradle/AsciidoctorJ-based documentation builds
 
 👉 Everything preconfigured to work together.
 
@@ -64,10 +70,55 @@ docker run --rm \
   -v $(pwd):/workspace \
   -w /workspace \
   ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
-  ./asciidoctor -v
+  asciidoctor -v
 ```
 
 > 💡 On Windows, replace `$(pwd)` with the appropriate path syntax.
+
+### Render AsciiDoc with diagrams
+
+```bash
+docker run --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  asciidoctor \
+    -r asciidoctor-diagram \
+    -r asciidoctor-diagram/plantuml \
+    --failure-level=ERROR \
+    docs/index.adoc
+```
+
+### Render reveal.js presentations
+
+The image includes the Ruby `asciidoctor-revealjs` CLI. Point `revealjsdir` at a
+CDN or at project-provided Reveal.js assets:
+
+```bash
+docker run --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  asciidoctor-revealjs \
+    -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.5.0 \
+    docs/slides.adoc
+```
+
+For offline or customized slide decks, vendor Reveal.js in the project and set
+`revealjsdir` to that local path.
+
+### Use with Gradle / AsciidoctorJ
+
+The image includes a Java runtime, so projects can run Gradle builds that use
+AsciidoctorJ and its diagram module:
+
+```bash
+docker run --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  ./gradlew --no-daemon build
+```
 
 ### Use in scripts (example)
 
@@ -76,7 +127,16 @@ docker run --rm \
 ```
 (assuming your project wraps the container execution)
 
-### GitHub Actions (example
+This repository's own `build.sh` validates the toolkit metadata, generates
+derived architecture fragments, and renders the assembled architecture HTML.
+It first looks for a published `df-<Dockerfile-hash>` image and builds a local
+image from the current Dockerfile if that exact image does not exist.
+
+```bash
+./build.sh build
+```
+
+### GitHub Actions (example)
 
 ```yaml
 jobs:
@@ -92,6 +152,8 @@ jobs:
 
 ## 🧩 Typical Use Cases
 - 📄 Generate HTML / PDF / Markdown from AsciiDoc
+- 🖼️ Render PlantUML diagrams from AsciiDoc
+- 🎞️ Build Reveal.js presentations from AsciiDoc
 - 🧱 Docs-as-Code pipelines
 - 📦 CI/CD documentation builds
 - 👥 Onboarding without local setup
@@ -104,11 +166,44 @@ This image follows a few simple principles:
 - 🧼 No hidden magic
 
 ## 🔄 Versioning
-- latest → most recent stable toolbox
-- version tags → reproducible builds
-- `df-<hash>` → image of latest commit (does not need to be the same as 'latest')
+- `latest` → most recent tagged stable toolbox image
+- version tags → reproducible release builds
+- `df-<hash>` → image built from a Dockerfile with that SHA-256 hash prefix
 
 👉 Pin versions in CI for full determinism.
+
+The `df-<hash>` tag is useful for local wrappers: compute the hash of the local
+Dockerfile, try to pull that image, and build locally when the image is not yet
+published.
+
+## 🏗️ Architecture Documentation
+
+This repository contains toolkit-compatible architecture documentation under
+`src/docs/`.
+
+The architecture documentation is dogfooded: it is generated with this
+project's own toolbox image. `build.sh` computes the local Dockerfile hash,
+uses the matching published `df-<hash>` image when available, and otherwise
+builds the current Dockerfile locally before rendering the documentation.
+
+Build it locally with:
+
+```bash
+./build.sh build
+```
+
+The output is written to:
+
+```text
+build/architecture/index.html
+```
+
+Pull requests validate the architecture metadata. Builds on `main` generate the
+architecture HTML and publish it through GitHub Pages.
+
+Expected GitHub Pages URL after the first successful deployment:
+
+👉 https://docs-as-code-toolkit.github.io/docs-toolbox/
 
 ## 🛠️ Customization
 If you need additional tools:

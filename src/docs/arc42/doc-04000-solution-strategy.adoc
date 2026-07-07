@@ -1,0 +1,23 @@
+---
+id: DOC-04000-solution-strategy
+type: Document
+title: Solution Strategy
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Summarizes the containerized toolbox strategy and toolkit documentation metamodel.
+tags:
+- arc42
+- strategy
+relations: []
+metadata_version: '1.0'
+---
+[[solution-strategy]]
+= Solution Strategy
+
+The solution strategy is to publish one versioned OCI image that contains the
+documentation toolchain needed by downstream Docs-as-Code projects.
+
+include::generated/doc-04000-solution-strategy-includes.adoc[]

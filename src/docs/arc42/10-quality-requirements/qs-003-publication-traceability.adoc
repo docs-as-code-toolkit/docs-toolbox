@@ -1,0 +1,44 @@
+---
+id: QS-003-publication-traceability
+type: QualityScenario
+title: Publication Traceability
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Published image tags should allow maintainers to trace images back to source inputs.
+tags:
+- quality
+- release
+relations:
+- type: refines
+  target: DOC-01001-quality-goals
+  status: proposed
+  rationale: The scenario concretizes the image publication traceability quality goal.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[qs-003-publication-traceability]]
+== QS-003: Publication Traceability
+
+=== Status
+
+Proposed.
+
+=== Scenario
+
+[cols="1,3", options="header"]
+|===
+| Element | Description
+| Source | Maintainer.
+| Stimulus | Inspects a published image tag after workflow completion.
+| Environment | Successful GitHub Actions build on `main` or a Git tag.
+| Artifact | GHCR image tags and annotations.
+| Response | The image has a Dockerfile-hash tag and source annotation; tagged commits also publish Git tag and `latest`.
+| Response Measure | Workflow summary prints the Dockerfile hash tag on every successful run and prints the Git tag when present.
+|===
+
+=== Assumptions
+
+* Maintainers should confirm whether source annotations are sufficient traceability or whether commit SHA labels are required.

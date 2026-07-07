@@ -1,0 +1,63 @@
+name: Architecture Documentation
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: architecture-docs-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Build Architecture Documentation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build architecture HTML
+        run: ./build.sh build
+
+  build-pages:
+    name: Build Architecture Pages
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build architecture HTML
+        run: ./build.sh build
+
+      - name: Upload architecture HTML
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/architecture
+
+  deploy-pages:
+    name: Deploy Architecture Pages
+    runs-on: ubuntu-latest
+    needs: build-pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

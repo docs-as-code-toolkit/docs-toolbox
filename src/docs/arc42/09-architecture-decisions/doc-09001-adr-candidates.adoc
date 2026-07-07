@@ -1,0 +1,33 @@
+---
+id: DOC-09001-adr-candidates
+type: Document
+title: ADR Candidates
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Lists missing decision records identified during migration.
+tags:
+- arc42
+- adr
+relations:
+- type: refines
+  target: DOC-09000-architecture-decisions
+  status: proposed
+  rationale: This detail page elaborates the architecture decisions chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[adr-candidates]]
+== ADR Candidates
+
+The migration found the following decision candidates:
+
+* Whether `openjdk:22-jdk-slim` is the long-term base image.
+* Whether Debian package versions should be pinned.
+* Whether `GHCR_PAT` should remain the registry authentication mechanism.
+* Whether image signing or vulnerability scanning is required before publishing.
+* Whether GitHub Pages is the long-term publication channel for architecture documentation.
+* Whether Reveal.js frontend assets should be bundled in the toolbox image or
+  supplied by downstream projects through `revealjsdir`.

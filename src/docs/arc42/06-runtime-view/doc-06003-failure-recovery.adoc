@@ -1,0 +1,38 @@
+---
+id: DOC-06003-failure-recovery
+type: Document
+title: Failure And Recovery Runtime Scenario
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Records likely failure and recovery paths for image publication and usage.
+tags:
+- arc42
+- runtime
+- failure
+relations:
+- type: refines
+  target: DOC-06000-runtime-view
+  status: proposed
+  rationale: This detail page elaborates the runtime view chapter.
+  reviewed: false
+- type: affects
+  target: RISK-001-unpinned-package-versions
+  status: proposed
+  rationale: Package repository changes can cause build failures or drift.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[failure-recovery-runtime-scenario]]
+== Failure And Recovery Runtime Scenario
+
+[cols="1,3,3", options="header"]
+|===
+| Failure | Observed Effect | Recovery Candidate
+| GHCR authentication fails | Workflow cannot push images. | Verify `GHCR_PAT`, package permissions, and GitHub actor access.
+| Package installation fails | Docker build fails during `apt-get install`. | Re-run after upstream recovery or pin/update affected package source.
+| Tool command missing in image | Downstream documentation command fails. | Add a smoke test and update Dockerfile if the tool is supported.
+| README marker missing | Workflow uses fallback description. | Restore marker block or accept fallback behavior.
+|===

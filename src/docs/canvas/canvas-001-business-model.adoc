@@ -1,0 +1,70 @@
+[[business-model-canvas]]
+= Business Model Canvas
+:id: CANVAS-001-business-model
+:status: draft
+:owner: project maintainers
+:revdate: 2026-07-07
+
+This draft is derived from repository evidence in `README.md`, `Dockerfile`, and
+`.github/workflows/create-docs-toolbox-image.yml`. It needs human review before
+being treated as accepted product truth.
+
+== Customer Segments
+
+* Documentation maintainers building Docs-as-Code pipelines.
+* Contributors who need zero-setup access to documentation tooling.
+* CI/CD maintainers who want one versioned toolchain image.
+
+== Value Propositions
+
+* Reproducible documentation builds across local and CI environments.
+* A single container image with common documentation CLI tools.
+* Lower onboarding friction for contributors.
+* Published GHCR image tags that support stable or hash-based selection.
+
+== Channels
+
+* GitHub repository README.
+* GHCR package distribution.
+* GitHub Actions publishing workflow.
+
+== Customer Relationships
+
+* Self-service usage through Docker commands and CI examples.
+* Contribution and review through repository pull requests.
+
+== Revenue Streams
+
+* No revenue model is evidenced. Treat the project as open source tooling under
+  MIT unless maintainers decide otherwise.
+
+== Key Resources
+
+* Dockerfile.
+* README image description marker.
+* GitHub Actions build workflow.
+* GHCR package namespace.
+
+== Key Activities
+
+* Maintain tool versions and base image choices.
+* Build and publish multi-platform container images.
+* Keep README usage examples aligned with the image.
+
+== Key Partners
+
+* Docs-as-Code Toolkit maintainers.
+* GitHub Actions and GHCR as infrastructure providers.
+* Upstream package repositories for installed tools.
+
+== Cost Structure
+
+* Maintenance effort for the Dockerfile and workflow.
+* CI build minutes and package storage.
+* Review effort when changing toolchain contents.
+
+== Assumptions To Validate
+
+* The installed package versions from the Debian base image are sufficient for users.
+* Multi-platform `linux/amd64` and `linux/arm64` images cover the target user base.
+* GHCR is the intended long-term distribution channel.

@@ -1,0 +1,44 @@
+---
+id: QS-001-reproducible-toolchain
+type: QualityScenario
+title: Reproducible Toolchain
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: A pinned image reference should let local and CI users run the same documentation toolchain.
+tags:
+- quality
+- reproducibility
+relations:
+- type: refines
+  target: DOC-01001-quality-goals
+  status: proposed
+  rationale: The scenario concretizes the reproducibility quality goal.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[qs-001-reproducible-toolchain]]
+== QS-001: Reproducible Toolchain
+
+=== Status
+
+Proposed.
+
+=== Scenario
+
+[cols="1,3", options="header"]
+|===
+| Element | Description
+| Source | Documentation contributor or CI pipeline.
+| Stimulus | Runs a documentation build using the same pinned `docs-toolbox` image reference.
+| Environment | Local workstation and GitHub Actions runner.
+| Artifact | Containerized documentation toolchain.
+| Response | The same documented tools are available in both environments.
+| Response Measure | All supported tool smoke-test commands pass in both environments for the same image reference.
+|===
+
+=== Assumptions
+
+* The exact supported smoke-test command list requires maintainer confirmation.

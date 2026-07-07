@@ -1,0 +1,86 @@
+---
+id: ADR-002-ghcr-publication-tags
+type: ADR
+title: GHCR Publication Tags
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Proposes documenting Dockerfile-hash, Git tag, and latest tag semantics.
+tags:
+- adr
+- release
+relations:
+- type: addresses
+  target: QS-003-publication-traceability
+  status: proposed
+  rationale: Tag semantics are central to publication traceability.
+  reviewed: false
+- type: introduces_risk
+  target: RISK-003-ambiguous-latest-tag
+  status: proposed
+  rationale: Users may treat `latest` as reproducible if guidance is unclear.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[adr-002-ghcr-publication-tags]]
+== ADR-002: GHCR Publication Tags
+
+=== Status
+
+Proposed.
+
+=== Decision
+
+We propose to document the current publication tag behavior as an explicit
+architecture and user contract after maintainer review.
+
+=== Context
+
+The workflow always computes a Dockerfile hash tag `df-<hash>`. If the commit
+has a Git tag, it also publishes the Git tag and `latest`.
+
+=== Decision Drivers
+
+* Deterministic downstream CI configuration.
+* Clear release communication.
+* Compatibility with the existing workflow.
+
+=== Considered Options
+
+==== Option 1: Current Tag Set
+
+Use Dockerfile hash tags for all builds and Git tag plus `latest` for tagged
+commits.
+
+==== Option 2: Git Tags Only
+
+Publish only human release tags.
+
+==== Option 3: Latest Only
+
+Publish only `latest`.
+
+=== Pugh Matrix
+
+[.pugh-matrix]
+[cols="2,1,1,1", options="header"]
+|===
+| Criterion | Current tag set | Git tags only | Latest only
+| Traceability | +1 | 0 | -1
+| User simplicity | 0 | +1 | +1
+| Reproducibility | +1 | +1 | -1
+| Workflow fit | +1 | 0 | -1
+s| Sum s| 3 s| 2 s| -2
+|===
+
+=== Consequences
+
+==== Positive
+
+* Users can choose between hash-based traceability and release tags.
+
+==== Negative
+
+* README guidance must explain when `latest` is published and why pinning is preferred.

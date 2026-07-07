@@ -1,0 +1,50 @@
+---
+id: RISK-003-ambiguous-latest-tag
+type: Risk
+title: Ambiguous Latest Tag
+status: proposed
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Users may treat `latest` as reproducible despite it being a moving reference.
+tags:
+- risk
+- release
+relations:
+- type: affects
+  target: QS-003-publication-traceability
+  status: proposed
+  rationale: Ambiguous tag guidance can reduce publication traceability for downstream users.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[risk-003-ambiguous-latest-tag]]
+== RISK-003: Ambiguous Latest Tag
+
+=== Status
+
+Proposed.
+
+=== Risk Statement
+
+Because `latest` is a moving tag and is published for tagged commits, downstream
+users may pin `latest` in CI and lose reproducibility across time.
+
+=== Assessment
+
+[cols="1,3", options="header"]
+|===
+| Field | Value
+| Likelihood | Medium.
+| Impact | Medium.
+| Priority | Medium.
+| Timeframe | Near-term.
+| Confidence | Medium.
+|===
+
+=== Mitigation Options
+
+* Document recommended pinning behavior.
+* Prefer Git tag or Dockerfile hash references in CI examples.
+* Clarify when `latest` is published.

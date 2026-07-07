@@ -1,0 +1,20 @@
+---
+id: DOC-08000-crosscutting-concepts
+type: Document
+title: Crosscutting Concepts
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Captures crosscutting concepts for supply chain, testing, observability, and error handling.
+tags:
+- arc42
+- concepts
+relations: []
+metadata_version: '1.0'
+---
+[[crosscutting-concepts]]
+= Crosscutting Concepts
+
+include::generated/doc-08000-crosscutting-concepts-includes.adoc[]

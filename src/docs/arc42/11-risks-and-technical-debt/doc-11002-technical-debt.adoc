@@ -1,0 +1,30 @@
+---
+id: DOC-11002-technical-debt
+type: Document
+title: Technical Debt
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Records technical debt candidates discovered during migration.
+tags:
+- arc42
+- technical-debt
+relations:
+- type: refines
+  target: DOC-11000-risks-and-technical-debt
+  status: proposed
+  rationale: This detail page elaborates the risks and technical debt chapter.
+  reviewed: false
+metadata_version: '1.0'
+---
+[[technical-debt]]
+== Technical Debt
+
+[cols="1,3,3", options="header"]
+|===
+| ID | Debt Candidate | Affected Building Block
+| TD-001 | No automated smoke tests currently prove that the image contains every documented tool. | Documentation toolchain.
+| TD-003 | Package version support policy is not recorded. | Dockerfile and publication workflow.
+|===

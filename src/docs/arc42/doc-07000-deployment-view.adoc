@@ -1,0 +1,20 @@
+---
+id: DOC-07000-deployment-view
+type: Document
+title: Deployment View
+status: draft
+owner: architecture
+created: '2026-07-07'
+reviewed: false
+generated: false
+summary: Describes how the image is built, tagged, published, and consumed.
+tags:
+- arc42
+- deployment
+relations: []
+metadata_version: '1.0'
+---
+[[deployment-view]]
+= Deployment View
+
+include::generated/doc-07000-deployment-view-includes.adoc[]
