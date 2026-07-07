@@ -9,16 +9,15 @@ require 'set'
 require 'yaml'
 
 class MetamodelValidator
-  REQUIRED_FIELDS = %w[id type title status created].freeze
-
   Artifact = Struct.new(:path, :metadata, :document_id, keyword_init: true)
 
   attr_reader :errors, :warnings, :root, :docs_dir
 
-  def initialize(root:, docs_dir:, relations_schema:)
+  def initialize(root:, docs_dir:, artifact_schema:, relations_schema:)
     @root = Pathname.new(root).expand_path
     @docs_paths = Array(docs_dir).map { |path| Pathname.new(path).expand_path }
     @docs_dir = @docs_paths.length == 1 ? @docs_paths.first : @docs_paths
+    @artifact_schema = Pathname.new(artifact_schema).expand_path
     @relations_schema = Pathname.new(relations_schema).expand_path
     @errors = []
     @warnings = []
@@ -28,12 +27,16 @@ class MetamodelValidator
     @errors = []
     @warnings = []
 
+    artifact_schema = load_yaml(@artifact_schema)
     relation_schema = load_yaml(@relations_schema)
+    artifact_required_fields = artifact_schema.fetch('required')
+    artifact_type_values = artifact_schema.fetch('properties').fetch('type').fetch('enum')
+    artifact_status_values = artifact_schema.fetch('properties').fetch('status').fetch('enum')
     relation_types = relation_schema.fetch('$defs').fetch('relationshipType').fetch('enum')
     relation_keys = relation_schema.fetch('$defs').fetch('relation').fetch('properties').keys
 
     artifacts = scan_artifacts
-    validate_artifacts(artifacts)
+    validate_artifacts(artifacts, artifact_required_fields, artifact_type_values, artifact_status_values)
     validate_filename_matches_id(artifacts)
     validate_decimal_classification(artifacts)
     validate_unique_ids(artifacts)
@@ -102,15 +105,25 @@ class MetamodelValidator
     path.expand_path.each_filename.include?('generated')
   end
 
-  def validate_artifacts(artifacts)
+  def validate_artifacts(artifacts, required_fields, type_values, status_values)
     artifacts.each do |artifact|
       metadata = artifact.metadata
       next unless metadata
 
-      REQUIRED_FIELDS.each do |field|
+      required_fields.each do |field|
         next if metadata.key?(field) && !blank?(metadata[field])
 
         @errors << "#{relative(artifact.path)} missing required metadata field '#{field}'"
+      end
+
+      type = metadata['type']
+      if !blank?(type) && !type_values.include?(type)
+        @errors << "#{relative(artifact.path)} metadata field 'type' has unsupported value '#{type}'"
+      end
+
+      status = metadata['status']
+      if !blank?(status) && !status_values.include?(status)
+        @errors << "#{relative(artifact.path)} metadata field 'status' has unsupported value '#{status}'"
       end
     end
   end
@@ -966,6 +979,7 @@ if $PROGRAM_NAME == __FILE__
   ]
   options = {
     docs_dir: default_docs_targets,
+    artifact_schema: root.join('metamodel/artifact.schema.yaml'),
     relations_schema: root.join('metamodel/relations.schema.yaml'),
     generate: false,
     output: nil,
@@ -982,6 +996,9 @@ if $PROGRAM_NAME == __FILE__
     parser.on('--relations-schema FILE', 'Path to metamodel/relations.schema.yaml') do |value|
       options[:relations_schema] = Pathname.new(value)
     end
+    parser.on('--artifact-schema FILE', 'Path to metamodel/artifact.schema.yaml') do |value|
+      options[:artifact_schema] = Pathname.new(value)
+    end
     parser.on('--generate', 'Generate derived AsciiDoc indexes and traceability fragments after successful validation') do
       options[:generate] = true
     end
@@ -993,6 +1010,7 @@ if $PROGRAM_NAME == __FILE__
   validator = MetamodelValidator.new(
     root: root,
     docs_dir: options[:docs_dir],
+    artifact_schema: options[:artifact_schema],
     relations_schema: options[:relations_schema]
   )
   artifacts = validator.validate
