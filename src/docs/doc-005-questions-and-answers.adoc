@@ -15,9 +15,10 @@ existing repository artifacts into the toolkit documentation structure.
 
 Answer: Open.
 
-Evidence currently shows Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz,
-unzip, curl, and OpenJDK in the Dockerfile. It is not yet reviewed whether all
-of them are long-term supported features or implementation conveniences.
+Evidence currently shows Asciidoctor, Asciidoctor Diagram, Asciidoctor
+reveal.js, Pandoc, Graphviz, unzip, curl, and OpenJDK in the Dockerfile. It is
+not yet reviewed whether all of them are long-term supported features or
+implementation conveniences.
 
 [[q-po-002]]
 === Q-PO-002: What tag should users pin for reproducible CI builds?
@@ -52,3 +53,12 @@ Answer: Open.
 
 No automated tests were found in this repository. A candidate is verifying the
 version command for each supported CLI tool.
+
+[[q-arch-003]]
+=== Q-ARCH-003: Should Reveal.js assets be bundled in the toolbox image?
+
+Answer: Open.
+
+The image now provides the `asciidoctor-revealjs` converter. Slide rendering
+still needs a `revealjsdir` value that points to CDN-hosted, vendored, or local
+Reveal.js frontend assets.

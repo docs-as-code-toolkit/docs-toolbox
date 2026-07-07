@@ -7,7 +7,7 @@
 
 == Customer Jobs
 
-* Build AsciiDoc, Markdown, diagram, and document outputs in CI.
+* Build AsciiDoc, Markdown, diagram, presentation, and document outputs in CI.
 * Reproduce CI documentation builds on a contributor workstation.
 * Avoid manually installing documentation toolchains.
 
@@ -31,9 +31,10 @@
 
 == Pain Relievers
 
-* Bundles Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, and curl.
+* Bundles Asciidoctor, Asciidoctor Diagram, Asciidoctor reveal.js, Pandoc,
+  Graphviz, unzip, and curl.
 * Supports Gradle/AsciidoctorJ-based builds through the Java runtime and direct
-  Asciidoctor CLI builds through the Ruby tooling.
+  Asciidoctor CLI and reveal.js presentation builds through the Ruby tooling.
 * Uses a containerized environment rather than host setup.
 * Publishes Dockerfile-hash tags for traceability.
 

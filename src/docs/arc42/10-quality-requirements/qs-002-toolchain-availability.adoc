@@ -36,10 +36,12 @@ Proposed.
 | Environment | Normal CI execution.
 | Artifact | Installed packages inside `docs-toolbox`.
 | Response | The command exists and returns version or help output.
-| Response Measure | `asciidoctor`, `pandoc`, `dot`, `curl`, and `unzip` version/help checks all exit successfully, and Ruby can require `asciidoctor-diagram` and `asciidoctor-diagram/plantuml`.
+| Response Measure | `asciidoctor`, `asciidoctor-revealjs`, `pandoc`, `dot`, `curl`, and `unzip` version/help checks all exit successfully, and Ruby can require `asciidoctor-diagram` and `asciidoctor-diagram/plantuml`.
 |===
 
 === Assumptions
 
 * The command names should be confirmed against the actual image entrypoint and package paths.
 * A minimal diagram rendering smoke test should confirm the Asciidoctor CLI path.
+* A minimal slide rendering smoke test should confirm the Asciidoctor reveal.js
+  CLI path and explicit `revealjsdir` handling.

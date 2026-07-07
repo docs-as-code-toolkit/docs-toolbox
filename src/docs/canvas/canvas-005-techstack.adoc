@@ -18,6 +18,7 @@
 * Asciidoctor Diagram.
 * Asciidoctor Diagram PlantUML support.
 * PlantUML diagram rendering through the Ruby Asciidoctor CLI path.
+* Asciidoctor reveal.js converter through the Ruby `asciidoctor-revealjs` CLI.
 * Pandoc.
 * Graphviz.
 
@@ -41,5 +42,7 @@
 == Open Validation Topics
 
 * Whether package versions need explicit pinning.
+* Whether Reveal.js frontend assets should be bundled in the image or supplied
+  by downstream projects through `revealjsdir`.
 * Whether additional documentation tools are part of the supported scope.
 * Whether `/app` or caller-provided `-w /workspace` is the intended default working directory contract.

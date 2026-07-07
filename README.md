@@ -25,6 +25,7 @@ Unlike ad-hoc setups, this image is designed to be **the single source of truth 
 - Zero-setup onboarding for contributors
 - Consistent toolchain in local and CI workflows
 - Diagram rendering without project-specific host setup
+- Reveal.js presentation builds from AsciiDoc sources
 - Direct Asciidoctor CLI builds and Gradle/AsciidoctorJ builds in the same runtime
 
 ---
@@ -35,6 +36,7 @@ This image provides a ready-to-use toolchain for **Docs-as-Code pipelines**:
 
 - Asciidoctor
 - Asciidoctor Diagram with PlantUML support
+- Asciidoctor reveal.js converter
 - Pandoc
 - Graphviz
 - Common CLI utilities
@@ -87,6 +89,24 @@ docker run --rm \
     docs/index.adoc
 ```
 
+### Render reveal.js presentations
+
+The image includes the Ruby `asciidoctor-revealjs` CLI. Point `revealjsdir` at a
+CDN or at project-provided Reveal.js assets:
+
+```bash
+docker run --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  asciidoctor-revealjs \
+    -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.5.0 \
+    docs/slides.adoc
+```
+
+For offline or customized slide decks, vendor Reveal.js in the project and set
+`revealjsdir` to that local path.
+
 ### Use with Gradle / AsciidoctorJ
 
 The image includes a Java runtime, so projects can run Gradle builds that use
@@ -133,6 +153,7 @@ jobs:
 ## 🧩 Typical Use Cases
 - 📄 Generate HTML / PDF / Markdown from AsciiDoc
 - 🖼️ Render PlantUML diagrams from AsciiDoc
+- 🎞️ Build Reveal.js presentations from AsciiDoc
 - 🧱 Docs-as-Code pipelines
 - 📦 CI/CD documentation builds
 - 👥 Onboarding without local setup

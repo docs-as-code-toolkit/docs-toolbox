@@ -35,7 +35,7 @@ metadata_version: '1.0'
 Person(user, "Docs-as-Code user", "Runs documentation commands")
 System_Boundary(toolbox, "docs-toolbox") {
   Container(image, "OCI image", "Docker", "Runtime environment for documentation commands")
-  Container(toolchain, "Documentation toolchain", "Debian packages and Ruby gem", "Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, curl")
+  Container(toolchain, "Documentation toolchain", "Debian packages and Ruby gems", "Asciidoctor, Asciidoctor Diagram, Asciidoctor reveal.js, Pandoc, Graphviz, unzip, curl")
   Container(metadata, "Image metadata", "OCI labels and annotations", "Title, description, source, license")
 }
 System_Ext(ghcr, "GHCR", "Container registry")
@@ -53,7 +53,7 @@ Rel(metadata, ghcr, "Describes package")
 |===
 | Building Block | Responsibility | Interface | Storage Location
 | OCI image | Provide a runnable documentation toolbox environment. | Docker image command execution. | Built from `Dockerfile`, published to GHCR.
-| Documentation toolchain | Provide Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, and curl. | CLI commands and Asciidoctor Ruby extensions inside the image. | Installed by `apt-get` and `gem install` in `Dockerfile`.
+| Documentation toolchain | Provide Asciidoctor, Asciidoctor Diagram, Asciidoctor reveal.js, Pandoc, Graphviz, unzip, and curl. | CLI commands and Asciidoctor Ruby extensions inside the image. | Installed by `apt-get` and `gem install` in `Dockerfile`.
 | Build workflow | Build, tag, and push the image. | GitHub Actions workflow dispatch, push, and tag events. | `.github/workflows/create-docs-toolbox-image.yml`.
 | README description marker | Provide package description metadata. | Marker block parsed by workflow shell step. | `README.md`.
 |===

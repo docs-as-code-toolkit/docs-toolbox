@@ -29,3 +29,5 @@ The migration found the following decision candidates:
 * Whether `GHCR_PAT` should remain the registry authentication mechanism.
 * Whether image signing or vulnerability scanning is required before publishing.
 * Whether GitHub Pages is the long-term publication channel for architecture documentation.
+* Whether Reveal.js frontend assets should be bundled in the toolbox image or
+  supplied by downstream projects through `revealjsdir`.

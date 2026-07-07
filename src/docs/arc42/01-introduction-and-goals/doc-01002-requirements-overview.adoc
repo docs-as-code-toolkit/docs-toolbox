@@ -26,13 +26,14 @@ metadata_version: '1.0'
 |===
 | ID | Requirement | Evidence
 | REQ-001 | The repository shall build a Docker image named `docs-toolbox`. | Dockerfile and workflow image name step.
-| REQ-002 | The image shall include Asciidoctor, Asciidoctor Diagram, Pandoc, Graphviz, unzip, and curl. | Dockerfile package and gem installation.
+| REQ-002 | The image shall include Asciidoctor, Asciidoctor Diagram, Asciidoctor reveal.js, Pandoc, Graphviz, unzip, and curl. | Dockerfile package and gem installation.
 | REQ-003 | The image shall allow callers to run arbitrary commands. | Dockerfile uses an empty `ENTRYPOINT []`.
 | REQ-004 | The release workflow shall publish multi-platform images to GHCR. | Workflow uses Docker Buildx with `linux/amd64,linux/arm64` and `--push`.
 | REQ-005 | The workflow shall publish a Dockerfile-hash tag for every build on `main` or tags. | Workflow computes `df-<hash>`.
 | REQ-006 | The repository shall build architecture documentation HTML without Gradle, including rendered PlantUML diagrams. | `build.sh` validates metadata, generates fragments, and runs Asciidoctor with `asciidoctor-diagram`.
 | REQ-007 | Pull requests shall validate architecture documentation. | `.github/workflows/architecture-docs.yml` runs `./build.sh validate` for pull requests.
 | REQ-008 | Pushes to `main` shall publish generated architecture HTML to GitHub Pages. | `.github/workflows/architecture-docs.yml` builds `build/architecture` and deploys it with GitHub Pages actions.
+| REQ-009 | The image shall expose `asciidoctor-revealjs` so downstream projects can build Reveal.js presentations from `.adoc` files. | Dockerfile gem installation and README usage example.
 |===
 
 The list is incomplete until maintainers confirm which README claims are part

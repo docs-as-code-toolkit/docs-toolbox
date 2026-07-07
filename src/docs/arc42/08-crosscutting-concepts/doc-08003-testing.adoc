@@ -33,6 +33,7 @@ Proposed smoke tests:
 
 * Build the Docker image.
 * Run `asciidoctor --version`.
+* Run `asciidoctor-revealjs --version`.
 * Run `ruby -e 'require "asciidoctor-diagram"'`.
 * Run `ruby -e 'require "asciidoctor-diagram/plantuml"'`.
 * Run `pandoc --version`.
@@ -40,6 +41,8 @@ Proposed smoke tests:
 * Run `curl --version`.
 * Run `unzip -v`.
 * Render a minimal PlantUML block through `asciidoctor -r asciidoctor-diagram`.
+* Render a minimal slide deck through `asciidoctor-revealjs` with an explicit
+  `revealjsdir` value.
 
 These tests would turn README claims about available tools into executable
 evidence.

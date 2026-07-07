@@ -29,5 +29,6 @@ metadata_version: '1.0'
 | docs-toolbox | The container image built by this repository for documentation pipelines.
 | GHCR | GitHub Container Registry, the publication target used by the workflow.
 | Dockerfile hash tag | Image tag of the form `df-<hash>` derived from the Dockerfile SHA-256 hash prefix.
+| Asciidoctor reveal.js | Converter that turns AsciiDoc slide sources into Reveal.js HTML presentations.
 | Supported tool | A CLI tool that maintainers confirm as part of the image contract.
 |===
