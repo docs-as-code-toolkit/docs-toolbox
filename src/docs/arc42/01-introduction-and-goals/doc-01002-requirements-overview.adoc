@@ -11,6 +11,7 @@ summary: Summarizes functional requirements visible in the current repository.
 tags:
 - arc42
 - requirements
+updated: '2026-07-08'
 relations:
 - type: refines
   target: DOC-01000-introduction-and-goals
@@ -34,6 +35,7 @@ metadata_version: '1.0'
 | REQ-007 | Pull requests shall validate architecture documentation. | `.github/workflows/architecture-docs.yml` runs `./build.sh validate` for pull requests.
 | REQ-008 | Pushes to `main` shall publish generated architecture HTML to GitHub Pages. | `.github/workflows/architecture-docs.yml` builds `build/architecture` and deploys it with GitHub Pages actions.
 | REQ-009 | The image shall expose `asciidoctor-revealjs` so downstream projects can build Reveal.js presentations from `.adoc` files. | Dockerfile gem installation and README usage example.
+| REQ-010 | The repository shall provide a docToolchain showcase that verifies HTML and PDF generation from the toolkit-compatible architecture sources. | `showcase/doctoolchain/build.sh` validates metadata, regenerates fragments, and runs `dtcw` against the assembled architecture source.
 |===
 
 The list is incomplete until maintainers confirm which README claims are part

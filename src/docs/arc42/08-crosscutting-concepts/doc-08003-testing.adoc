@@ -11,6 +11,7 @@ summary: Identifies current test gaps and proposed smoke test coverage.
 tags:
 - arc42
 - testing
+updated: '2026-07-08'
 relations:
 - type: refines
   target: DOC-08000-crosscutting-concepts
@@ -52,3 +53,6 @@ Current documentation checks:
 * Pull requests run `./build.sh validate`.
 * The main branch Pages workflow runs `./build.sh build`.
 * `build.sh validate` runs `ruby scripts/validate-metamodel.rb --generate`.
+* `showcase/doctoolchain/build.sh html local` and
+  `showcase/doctoolchain/build.sh pdf local` verify that docToolchain can render
+  the toolkit-compatible architecture sources to HTML and PDF.

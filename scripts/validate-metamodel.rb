@@ -422,8 +422,7 @@ class TraceabilityMatrixGenerator
   end
 
   def artifact_link(artifact)
-    target = artifact.path.expand_path.relative_path_from(@output_path.dirname).to_s
-    "xref:#{target}##{artifact_anchor(artifact.path)}[#{cell(artifact.metadata['id'])}]"
+    "xref:#{artifact_anchor(artifact.path)}[#{cell(artifact.metadata['id'])}]"
   end
 
   def anchor_for(path)

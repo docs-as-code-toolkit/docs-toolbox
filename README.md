@@ -120,6 +120,29 @@ A complete example presentation is available in
 how to build Reveal.js slides from AsciiDoc with the toolbox image, including a
 small diagram rendered through Asciidoctor Diagram.
 
+### docToolchain showcase
+
+This repository also contains a runnable
+[`showcase/doctoolchain`](showcase/doctoolchain) example. It verifies that
+docToolchain can render the repository's architecture sources, which are
+structured with the sibling
+[`architecture-knowledge-toolkit`](https://github.com/docs-as-code-toolkit/architecture-knowledge-toolkit).
+
+The showcase validates toolkit metadata, regenerates derived include and
+traceability fragments, and then renders the assembled architecture
+documentation to HTML and PDF with `dtcw`.
+
+```bash
+./showcase/doctoolchain/build.sh
+```
+
+The default path uses a local docToolchain installation managed by `dtcw`.
+Container execution is available as an alternative:
+
+```bash
+./showcase/doctoolchain/build.sh all docker
+```
+
 ### Use with Gradle / AsciidoctorJ
 
 The image includes a Java runtime, so projects can run Gradle builds that use

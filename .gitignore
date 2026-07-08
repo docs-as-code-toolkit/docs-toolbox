@@ -43,3 +43,7 @@ bin/
 
 ### Generated architecture documentation ###
 **/generated/
+
+### Showcase-local wrapper caches ###
+showcase/**/.dtcw/
+showcase/**/.gradle/

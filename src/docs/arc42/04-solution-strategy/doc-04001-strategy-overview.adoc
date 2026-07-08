@@ -11,6 +11,7 @@ summary: Describes the main strategy decisions visible in the current repository
 tags:
 - arc42
 - strategy
+updated: '2026-07-08'
 relations:
 - type: refines
   target: DOC-04000-solution-strategy
@@ -37,4 +38,5 @@ Docs-as-Code toolchain. Build and publication are automated with GitHub Actions.
 | Keep entrypoint empty | Let consumers run arbitrary documentation commands. | Dockerfile `ENTRYPOINT []`.
 | Publish traceable tags | Help users choose deterministic image references. | Workflow `df-<hash>` tag.
 | Reuse README marker text | Keep package description close to product documentation. | Workflow README extraction step.
+| Verify publisher compatibility with a showcase | Prove that toolkit-compatible architecture sources can still be published by docToolchain. | `showcase/doctoolchain` renders the repository architecture to HTML and PDF with `dtcw`.
 |===

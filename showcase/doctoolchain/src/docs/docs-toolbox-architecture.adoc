@@ -1,0 +1,36 @@
+= docs-toolbox Architecture
+:toc: left
+:toclevels: 3
+:sectnums:
+:skip-front-matter:
+
+This docToolchain showcase publishes the repository's architecture source from
+`src/docs/arc42/`. The source documents remain toolkit-compatible architecture
+artifacts with YAML metadata; this file only adapts them for the docToolchain
+publisher.
+
+include::../../../../src/docs/arc42/doc-01000-introduction-and-goals.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-02000-architecture-constraints.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-03000-system-scope-and-context.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-04000-solution-strategy.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-05000-building-block-view.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-06000-runtime-view.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-07000-deployment-view.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-08000-crosscutting-concepts.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-09000-architecture-decisions.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-10000-quality-requirements.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-11000-risks-and-technical-debt.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-12000-glossary.adoc[leveloffset=+1]
+
+include::../../../../src/docs/arc42/doc-13000-appendix.adoc[leveloffset=+1]

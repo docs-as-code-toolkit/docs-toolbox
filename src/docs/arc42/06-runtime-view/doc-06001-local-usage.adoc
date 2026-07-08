@@ -11,6 +11,7 @@ summary: Describes how a contributor runs a documentation command in the image.
 tags:
 - arc42
 - runtime
+updated: '2026-07-08'
 relations:
 - type: refines
   target: DOC-06000-runtime-view
@@ -62,3 +63,15 @@ the build without requiring Gradle.
 
 Gradle projects can still use AsciidoctorJ inside the same toolbox image. This
 repository's direct CLI build uses the Ruby Asciidoctor path.
+
+=== docToolchain Showcase
+
+The `showcase/doctoolchain` workflow validates that the same architecture
+sources can also be consumed by docToolchain. It runs the toolkit metamodel
+validator and generators first, then renders the assembled architecture document
+with `dtcw generateHTML` and `dtcw generatePDF`.
+
+The default showcase path uses `dtcw local` and installs the configured
+docToolchain version under `$HOME/.doctoolchain` when necessary. The same script
+also supports `dtcw docker` for environments where the docToolchain container is
+available.

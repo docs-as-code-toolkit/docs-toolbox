@@ -1,0 +1,141 @@
+= docToolchain Showcase
+:toc:
+:toclevels: 2
+
+This showcase verifies that the repository's toolkit-compatible architecture
+documentation can be rendered with docToolchain through the `dtcw` wrapper.
+
+It deliberately keeps `src/docs/` as the source of truth:
+
+* `scripts/validate-metamodel.rb --generate` validates architecture metadata and
+  regenerates derived include, index, and traceability fragments.
+* `showcase/doctoolchain/src/docs/docs-toolbox-architecture.adoc` is a thin
+  publisher adapter for docToolchain.
+* `showcase/doctoolchain/Config.groovy` configures docToolchain to render that
+  adapter to HTML and PDF.
+
+== Normal docToolchain Path
+
+The standard minimum path for a fresh docToolchain project is:
+
+----
+curl -Lo dtcw https://doctoolchain.org/dtcw
+chmod +x dtcw
+./dtcw downloadTemplate
+./dtcw generateHTML
+----
+
+For this repository we do not run `downloadTemplate`, because the arc42
+documentation already exists and is enriched by the
+architecture-knowledge-toolkit metamodel. The showcase therefore starts at the
+integration point: validate and generate toolkit-derived fragments, then use
+docToolchain as the publishing engine.
+
+== Run
+
+From the repository root:
+
+----
+./showcase/doctoolchain/build.sh
+----
+
+The default mode is local docToolchain execution. The script downloads `dtcw`
+into `showcase/doctoolchain/.dtcw/` if it is not already present, runs the
+toolkit validator/generator, installs the wrapper's configured docToolchain
+version into `$HOME/.doctoolchain` when necessary, and then executes:
+
+----
+./dtcw local generateHTML
+./dtcw local generatePDF
+----
+
+Use the explicit command form when you only want one target:
+
+----
+./showcase/doctoolchain/build.sh html local
+./showcase/doctoolchain/build.sh pdf local
+----
+
+== Docker or Podman Mode
+
+The same showcase can be executed through the docToolchain container:
+
+----
+./showcase/doctoolchain/build.sh all docker
+----
+
+The wrapper needs Docker, or Podman with Docker-compatible CLI behavior. If only
+`podman` is available, the script creates a temporary `docker` shim in the
+showcase cache for the `dtcw docker` calls.
+
+NOTE: The published docToolchain `v3.5.0` container image is currently
+`linux/amd64`. On Apple Silicon with Podman this can require emulation. If the
+Gradle daemon disappears during `generateHTML` or `generatePDF`, rerun with
+Docker Desktop/Rosetta support or increase the Podman machine resources. The
+script already lowers Gradle memory pressure with `-Xmx1024m` and one worker.
+
+== Local Mode Notes
+
+The local `dtcw generateHTML` path is valid, but it has one important trap:
+`dtcw` treats any `doctoolchain` executable on `PATH` as a local installation
+without proving that it matches the wrapper's configured version. If an older
+installation is found first, for example through an `asdf` shim, Gradle may fail
+while resolving docToolchain plugin dependencies.
+
+The showcase script avoids this by calling:
+
+----
+./dtcw local install doctoolchain
+----
+
+before rendering. The install command is idempotent and ensures that
+`$HOME/.doctoolchain/docToolchain-<version>/bin/doctoolchain` exists. The script
+also passes an absolute `docDir` and a config path relative to that `docDir`,
+because docToolchain resolves `mainConfigFile` relative to the documentation
+root.
+
+== Outputs
+
+docToolchain writes the generated documents below:
+
+----
+build/showcase/doctoolchain/html5/docs-toolbox-architecture.html
+build/showcase/doctoolchain/pdf/docs-toolbox-architecture.pdf
+----
+
+These outputs are build artifacts and are intentionally not tracked.
+
+== Verification
+
+The showcase has two useful verification levels:
+
+----
+./showcase/doctoolchain/build.sh validate
+----
+
+This proves that the architecture-knowledge-toolkit metadata model is valid and
+that generated fragments are up to date.
+
+----
+./showcase/doctoolchain/build.sh html
+./showcase/doctoolchain/build.sh pdf
+----
+
+These commands additionally prove the local docToolchain publishing path. Add
+`docker` as second argument to verify the container path:
+
+----
+./showcase/doctoolchain/build.sh html docker
+./showcase/doctoolchain/build.sh pdf docker
+----
+
+== What This Proves
+
+The showcase demonstrates the intended layering:
+
+* architecture knowledge is authored once in `src/docs/` with stable artifact
+  IDs, relations, status, review flags, and generated traceability fragments;
+* the architecture-knowledge-toolkit validator and generator keep metadata and
+  derived AsciiDoc fragments consistent;
+* docToolchain consumes the assembled AsciiDoc source and produces the target
+  documents most teams expect first: HTML and PDF.

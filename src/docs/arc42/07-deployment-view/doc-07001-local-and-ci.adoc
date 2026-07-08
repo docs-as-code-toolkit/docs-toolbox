@@ -11,6 +11,7 @@ summary: Describes local, CI, and registry deployment environments.
 tags:
 - arc42
 - deployment
+updated: '2026-07-08'
 relations:
 - type: refines
   target: DOC-07000-deployment-view
@@ -30,4 +31,5 @@ metadata_version: '1.0'
 | GHCR | Published multi-platform image. | Workflow pushes `linux/amd64` and `linux/arm64` images.
 | Downstream CI | Pinned image reference. | README recommends pinning versions for determinism.
 | GitHub Pages | Static architecture HTML generated from `src/docs/doc-001-arc42.adoc`. | `.github/workflows/architecture-docs.yml` uploads `build/architecture` to the expected URL `https://docs-as-code-toolkit.github.io/docs-toolbox/` after the first successful deployment.
+| docToolchain showcase | Local or containerized `dtcw` execution against the repository architecture sources. | `showcase/doctoolchain/build.sh` can render HTML and PDF using `local` or `docker` mode.
 |===

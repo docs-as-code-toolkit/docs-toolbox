@@ -11,6 +11,7 @@ summary: Lists missing decision records identified during migration.
 tags:
 - arc42
 - adr
+updated: '2026-07-08'
 relations:
 - type: refines
   target: DOC-09000-architecture-decisions
@@ -31,3 +32,6 @@ The migration found the following decision candidates:
 * Whether GitHub Pages is the long-term publication channel for architecture documentation.
 * Whether Reveal.js frontend assets should be bundled in the toolbox image or
   supplied by downstream projects through `revealjsdir`.
+* Whether docToolchain support should remain a repository-local showcase, move
+  into a dedicated showcase repository, or become a preinstalled variant of the
+  docs-toolbox image.
