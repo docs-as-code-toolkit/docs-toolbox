@@ -29,4 +29,5 @@ metadata_version: '1.0'
 | GHCR registry API | GHCR | The workflow authenticates and pushes built images.
 | Container command execution | Docker or CI runtime | Callers mount a workspace and run documentation commands inside the image.
 | README marker block | GitHub Actions shell step | The workflow extracts package description metadata from README markers.
+| Publishing workflow | Downstream project, docToolchain, or similar tools | The image provides a reproducible runtime layer; consuming projects own the publishing workflow choice.
 |===

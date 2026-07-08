@@ -16,9 +16,13 @@
 * Confirm supported tool versions and tag policy with maintainers.
 * Add a smoke test for expected CLI tools in the built image.
 * Decide whether base image and package versions require pinning.
+* Clarify whether docToolchain itself should be installed, documented as a
+  downstream layer, or left to consuming projects.
 
 == Later
 
 * Define a release policy for stable image tags.
 * Consider automated README-to-image-contract checks.
 * Consider documenting compatibility guarantees for downstream projects.
+* Add examples for combining docs-toolbox with higher-level publishing
+  workflows such as docToolchain when demand is proven.

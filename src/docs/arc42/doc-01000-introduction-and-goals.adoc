@@ -20,4 +20,9 @@ metadata_version: '1.0'
 `docs-toolbox` is a lightweight Docker image for running Docs-as-Code pipelines
 in a reproducible environment locally and in CI.
 
+Within the Docs-as-Code Toolkit it provides the runtime layer for rendering. It
+can support direct Asciidoctor/Pandoc/Gradle builds and can also be combined
+with higher-level publishing workflows such as docToolchain when a consuming
+project chooses that path.
+
 include::generated/doc-01000-introduction-and-goals-includes.adoc[]

@@ -19,6 +19,12 @@ Just use the same environment everywhere.
 
 Unlike ad-hoc setups, this image is designed to be **the single source of truth for your documentation toolchain**.
 
+In the wider Docs-as-Code Toolkit, `docs-toolbox` is the reproducible rendering
+runtime. It complements [docToolchain](https://github.com/docToolchain) and
+similar publishing tools rather than competing with them: higher-level projects
+can structure architecture knowledge one layer above publishing, then use this
+image locally or in CI to render the derived documentation.
+
 ## 🧠 What this enables
 
 - Reproducible documentation builds across environments
@@ -27,6 +33,8 @@ Unlike ad-hoc setups, this image is designed to be **the single source of truth 
 - Diagram rendering without project-specific host setup
 - Reveal.js presentation builds from AsciiDoc sources
 - Direct Asciidoctor CLI builds and Gradle/AsciidoctorJ builds in the same runtime
+- A toolbox layer for projects that publish with direct Asciidoctor/Pandoc,
+  Gradle/AsciidoctorJ, docToolchain, or similar pipelines
 
 ---
 

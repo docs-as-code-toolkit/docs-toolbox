@@ -62,3 +62,17 @@ Answer: Open.
 The image now provides the `asciidoctor-revealjs` converter. Slide rendering
 still needs a `revealjsdir` value that points to CDN-hosted, vendored, or local
 Reveal.js frontend assets.
+
+[[q-arch-004]]
+=== Q-ARCH-004: Should docToolchain be installed in the toolbox image?
+
+Answer: Open.
+
+Current assumption: `docs-toolbox` should first stay a lightweight,
+reproducible runtime for the tools already used by the project: Asciidoctor,
+Asciidoctor Diagram, Pandoc, Graphviz, and Java/Gradle-based builds. This does
+not compete with https://github.com/docToolchain[docToolchain]. docToolchain can
+remain a higher-level publishing workflow that consumes structured AsciiDoc
+sources, while docs-toolbox provides local and CI rendering support. Installing
+docToolchain in the image should be a deliberate product decision, not an
+implicit dependency.

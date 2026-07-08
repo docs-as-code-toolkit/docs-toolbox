@@ -1,2 +1,4 @@
 Provide a lightweight, reproducible toolbox image that lets contributors run the
-same Docs-as-Code toolchain locally and in CI.
+same Docs-as-Code toolchain locally and in CI. The image sits below publishing
+choices: projects can render directly with Asciidoctor, Pandoc, or Gradle, or
+combine the toolbox with docToolchain and similar publishing workflows.
