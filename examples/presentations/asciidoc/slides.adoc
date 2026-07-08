@@ -1,0 +1,167 @@
+= docs-toolbox Highlights
+:author: Docs-as-Code Toolkit
+:revdate: 2026-07-08
+:doctype: book
+:revealjs_theme: white
+:revealjs_hash: true
+:revealjs_slideNumber: true
+:revealjs_width: 1280
+:revealjs_height: 720
+:imagesdir: images
+
+== One Image. One Toolchain.
+
+The `docs-toolbox` Docker image provides a reproducible runtime for
+Docs-as-Code pipelines.
+
+[.fragment]
+--
+Use the same documentation toolchain locally, in CI, and during onboarding.
+--
+
+== Why It Helps
+
+[.step]
+* Stop installing random tools locally
+* Stop debugging version drift between laptops and CI
+* Start treating documentation builds as a repeatable delivery pipeline
+
+== Included Highlights
+
+[cols="1,2", options="header"]
+|===
+| Capability | Included tooling
+
+| AsciiDoc rendering
+| `asciidoctor`
+
+| Diagrams
+| `asciidoctor-diagram`, PlantUML support, Graphviz
+
+| Presentations
+| `asciidoctor-revealjs`
+
+| Format conversion
+| `pandoc`
+
+| JVM-based builds
+| Java runtime for Gradle and AsciidoctorJ workflows
+|===
+
+== Build This Deck
+
+[source,bash]
+----
+docker run --rm \
+  -v "$(pwd)":/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  asciidoctor-revealjs \
+    -r asciidoctor-diagram \
+    -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.5.0 \
+    -D examples/presentations/asciidoc/build \
+    examples/presentations/asciidoc/slides.adoc
+----
+
+== Result
+
+Open the generated HTML file:
+
+[source,text]
+----
+examples/presentations/asciidoc/build/slides.html
+----
+
+[.notes]
+--
+Speaker note: the generated HTML references Reveal.js from the configured CDN.
+For offline decks, vendor Reveal.js and point `revealjsdir` to the local asset
+directory.
+--
+
+== Diagrams Work Too
+
+This container can render diagrams from AsciiDoc in the same environment as the
+presentation build.
+
+[plantuml,toolbox-flow,svg]
+----
+@startuml
+left to right direction
+actor Contributor
+rectangle "mounted workspace" as Workspace
+rectangle "docs-toolbox image" as Toolbox {
+  component "asciidoctor-revealjs" as Reveal
+  component "asciidoctor-diagram" as Diagram
+}
+rectangle "HTML slides" as Slides
+
+Contributor --> Workspace : edits slides.adoc
+Workspace --> Toolbox : docker run
+Reveal --> Slides : renders
+Diagram --> Slides : embeds diagrams
+@enduml
+----
+
+== Reuse Project Sources
+
+Slides can include fragments from the same repository. The source stays in one
+place; the presentation only selects the part it needs.
+
+[source,asciidoc]
+----
+\include::../../../src/docs/arc42/05-building-block-view/doc-05001-level-1.adoc[tag=docs-toolbox-level-1-diagram]
+----
+
+== Toolbox Building Blocks
+
+The toolbox is an OCI image with a documentation toolchain inside. Contributors
+mount their workspace, run the image, and get reproducible local and CI builds.
+
+include::../../../src/docs/arc42/05-building-block-view/doc-05001-level-1.adoc[tag=docs-toolbox-level-1-diagram]
+
+== Same Runtime In CI
+
+[source,yaml]
+----
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/docs-as-code-toolkit/docs-toolbox:latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: asciidoctor-revealjs -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.5.0 docs/slides.adoc
+----
+
+== Pin When It Matters
+
+Use image tags intentionally:
+
+[%step]
+* `latest` for easy exploration
+* version tags for stable release builds
+* `df-<hash>` tags for Dockerfile-traceable builds
+
+== What To Copy
+
+Use this folder as a starter pattern:
+
+[source,text]
+----
+examples/presentations/asciidoc/
+|-- README.md
+|-- slides.adoc
+`-- build/
+----
+
+== Takeaway
+
+The toolbox turns an AsciiDoc slide deck into a reproducible artifact:
+
+[.step]
+* source-controlled content
+* containerized rendering
+* diagram-capable slides
+* CI-ready commands

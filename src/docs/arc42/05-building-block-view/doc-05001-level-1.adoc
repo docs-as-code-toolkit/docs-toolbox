@@ -27,6 +27,7 @@ metadata_version: '1.0'
 [[level-1-building-blocks]]
 == Level 1 Building Blocks
 
+// tag::docs-toolbox-level-1-diagram[]
 [plantuml, docs-toolbox-building-blocks, svg]
 ----
 @startuml
@@ -48,6 +49,7 @@ Rel(workflow, ghcr, "Pushes")
 Rel(metadata, ghcr, "Describes package")
 @enduml
 ----
+// end::docs-toolbox-level-1-diagram[]
 
 [cols="1,2,2,2", options="header"]
 |===

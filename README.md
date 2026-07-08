@@ -107,6 +107,11 @@ docker run --rm \
 For offline or customized slide decks, vendor Reveal.js in the project and set
 `revealjsdir` to that local path.
 
+A complete example presentation is available in
+[`examples/presentations/asciidoc`](examples/presentations/asciidoc). It shows
+how to build Reveal.js slides from AsciiDoc with the toolbox image, including a
+small diagram rendered through Asciidoctor Diagram.
+
 ### Use with Gradle / AsciidoctorJ
 
 The image includes a Java runtime, so projects can run Gradle builds that use
