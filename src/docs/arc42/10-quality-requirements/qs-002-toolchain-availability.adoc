@@ -36,7 +36,7 @@ Proposed.
 | Environment | Normal CI execution.
 | Artifact | Installed packages inside `docs-toolbox`.
 | Response | The command exists and returns version or help output.
-| Response Measure | `asciidoctor`, `asciidoctor-revealjs`, `pandoc`, `dot`, `curl`, and `unzip` version/help checks all exit successfully, and Ruby can require `asciidoctor-diagram` and `asciidoctor-diagram/plantuml`.
+| Response Measure | `asciidoctor`, `asciidoctor-revealjs`, `pandoc`, `dot`, `curl`, `unzip`, `python3`, and `docs-toolbox-serve` version/help checks all exit successfully, and Ruby can require `asciidoctor-diagram` and `asciidoctor-diagram/plantuml`.
 |===
 
 === Assumptions
@@ -45,3 +45,5 @@ Proposed.
 * A minimal diagram rendering smoke test should confirm the Asciidoctor CLI path.
 * A minimal slide rendering smoke test should confirm the Asciidoctor reveal.js
   CLI path and explicit `revealjsdir` handling.
+* A static web server smoke test should confirm that `docs-toolbox-serve --help`
+  works and that the command serves a generated presentation directory.

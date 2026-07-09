@@ -32,7 +32,7 @@
 == Pain Relievers
 
 * Bundles Asciidoctor, Asciidoctor Diagram, Asciidoctor reveal.js, Pandoc,
-  Graphviz, unzip, and curl.
+  Graphviz, unzip, curl, Python 3, and a static web server helper.
 * Supports Gradle/AsciidoctorJ-based builds through the Java runtime and direct
   Asciidoctor CLI and reveal.js presentation builds through the Ruby tooling.
 * Uses a containerized environment rather than host setup.

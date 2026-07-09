@@ -16,9 +16,9 @@ existing repository artifacts into the toolkit documentation structure.
 Answer: Open.
 
 Evidence currently shows Asciidoctor, Asciidoctor Diagram, Asciidoctor
-reveal.js, Pandoc, Graphviz, unzip, curl, and OpenJDK in the Dockerfile. It is
-not yet reviewed whether all of them are long-term supported features or
-implementation conveniences.
+reveal.js, Pandoc, Graphviz, unzip, curl, Python 3, OpenJDK, and the
+`docs-toolbox-serve` helper in the Dockerfile. It is not yet reviewed whether
+all of them are long-term supported features or implementation conveniences.
 
 [[q-po-002]]
 === Q-PO-002: What tag should users pin for reproducible CI builds?

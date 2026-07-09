@@ -48,6 +48,7 @@ This image provides a ready-to-use toolchain for **Docs-as-Code pipelines**:
 - Pandoc
 - Graphviz
 - Common CLI utilities
+- Static web server command for previewing generated sites and presentations
 - Java runtime support for Gradle/AsciidoctorJ-based documentation builds
 
 👉 Everything preconfigured to work together.
@@ -114,6 +115,23 @@ docker run --rm \
 
 For offline or customized slide decks, vendor Reveal.js in the project and set
 `revealjsdir` to that local path.
+
+Serve generated presentations through the toolbox image when browser features
+such as Reveal.js speaker notes should run from `http://localhost` instead of
+`file://`:
+
+```bash
+docker run --rm \
+  -p 8000:8000 \
+  -v "$(pwd)":/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  docs-toolbox-serve docs 8000
+```
+
+Then open the generated slide deck below `http://localhost:8000/`, for example
+`http://localhost:8000/slides.html` when the presentation was written to
+`docs/slides.html`.
 
 A complete example presentation is available in
 [`examples/presentations/asciidoc`](examples/presentations/asciidoc). It shows

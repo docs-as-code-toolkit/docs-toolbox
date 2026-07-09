@@ -18,7 +18,7 @@ Project-local facts currently supported by repository evidence:
 - The product is a Docker image named `docs-toolbox`.
 - The image supports reproducible Docs-as-Code pipelines locally and in CI.
 - The Dockerfile uses `openjdk:22-jdk-slim`.
-- The image installs Asciidoctor, Pandoc, Graphviz, unzip, and curl.
+- The image installs Asciidoctor, Pandoc, Graphviz, unzip, curl, and Python 3.
 - GitHub Actions builds and pushes multi-platform images to GHCR.
 - Tags include a Dockerfile hash tag and, for Git-tagged commits, the Git tag and `latest`.
 - The project is MIT licensed.

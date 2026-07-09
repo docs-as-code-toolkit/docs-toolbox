@@ -15,8 +15,11 @@ RUN apt-get update && apt-get install -y \
     graphviz \
     unzip \
     curl \
+    python3 \
     && gem install --no-document asciidoctor-diagram asciidoctor-diagram-plantuml asciidoctor-revealjs \
     && rm -rf /var/lib/apt/lists/*
+
+COPY scripts/docs-toolbox-serve /usr/local/bin/docs-toolbox-serve
 
 # Arbeitsverzeichnis
 WORKDIR /app

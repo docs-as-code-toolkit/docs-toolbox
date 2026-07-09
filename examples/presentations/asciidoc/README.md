@@ -103,11 +103,15 @@ Private notes for the presenter.
 Reveal.js opens the speaker view with the `S` key. When opening the generated
 HTML directly via `file://`, the normal slides may work, but the speaker view can
 be restricted by the browser. Serve the example directory with a local web server
-instead:
+from the toolbox image instead:
 
 ```bash
-cd examples/presentations/asciidoc
-python3 -m http.server 8000
+docker run --rm \
+  -p 8000:8000 \
+  -v "$(pwd)":/workspace \
+  -w /workspace \
+  ghcr.io/docs-as-code-toolkit/docs-toolbox:latest \
+  docs-toolbox-serve examples/presentations/asciidoc 8000
 ```
 
 Then open:

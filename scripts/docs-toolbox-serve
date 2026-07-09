@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+set -eu
+
+usage() {
+  cat <<'USAGE'
+Usage: docs-toolbox-serve [directory] [port]
+
+Serve static files from a local directory.
+
+Arguments:
+  directory  Directory to serve. Defaults to the current working directory.
+  port       Port inside the container. Defaults to 8000.
+
+Example:
+  docs-toolbox-serve build 8000
+USAGE
+}
+
+case "${1:-}" in
+  -h|--help)
+    usage
+    exit 0
+    ;;
+esac
+
+DIRECTORY="${1:-.}"
+PORT="${2:-8000}"
+
+if [ ! -d "$DIRECTORY" ]; then
+  echo "Directory not found: $DIRECTORY" >&2
+  exit 2
+fi
+
+exec python3 -m http.server "$PORT" --bind 0.0.0.0 --directory "$DIRECTORY"
