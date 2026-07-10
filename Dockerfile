@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     python3 \
+    nodejs \
+    npm \
     && gem install --no-document asciidoctor-diagram asciidoctor-diagram-plantuml asciidoctor-revealjs \
     && rm -rf /var/lib/apt/lists/*
 

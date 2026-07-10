@@ -47,6 +47,9 @@ This image provides a ready-to-use toolchain for **Docs-as-Code pipelines**:
 - Asciidoctor reveal.js converter
 - Pandoc
 - Graphviz
+- Ruby runtime (for validators, generators, and Ruby test suites)
+- Node.js and npm (for JavaScript-based generators and tests)
+- Python 3
 - Common CLI utilities
 - Static web server command for previewing generated sites and presentations
 - Java runtime support for Gradle/AsciidoctorJ-based documentation builds
