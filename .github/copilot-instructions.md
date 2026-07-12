@@ -1,21 +1,18 @@
 # Repository Instructions For GitHub Copilot
 
-Follow the project `AGENTS.md`.
+This file is a GitHub Copilot entry point only. Keep GitHub Copilot-specific
+integration guidance under `adapters/github-copilot/` and keep reusable
+architecture and SDLC semantics in the architecture-knowledge-toolkit.
 
-This project uses architecture-knowledge-toolkit for architecture documentation,
-ADRs, quality scenarios, risks, traceability metadata, templates, validators,
-generated include fragments, and SDLC task workflows that are not described more
-specifically in this repository.
+Follow repository-root `adapters/github-copilot/copilot-instructions.md`, then
+the contract hierarchy in repository-root `AGENTS.md` and
+`general-semantic-contracts.md`.
 
-Use the toolkit repository as source of truth when local toolkit files are missing:
+Use the toolkit repository as source of truth when local toolkit files are
+missing:
 
 https://github.com/docs-as-code-toolkit/architecture-knowledge-toolkit
 
-For architecture-related or SDLC workflow changes:
-
-- prefer small, reviewable changes
-- preserve stable IDs
-- keep AI-generated or AI-modified architecture content in `draft` or `proposed` state unless reviewed
-- do not manually maintain generated fragments
-- consult the relevant toolkit skill before issue slicing, issue implementation, commit message, pull request review, post-merge synchronization, ADR, quality scenario, risk, or traceability-review work when local instructions are missing
-- do not introduce Copilot-specific rules into engine-independent toolkit files
+Do not duplicate architecture, ADR, quality scenario, risk, traceability,
+metadata, arc42, or SDLC rules here. Add durable rules to the canonical toolkit
+source instead.

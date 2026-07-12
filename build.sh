@@ -8,12 +8,15 @@ SOURCE_DOC="${SOURCE_DOC:-src/docs/doc-001-arc42.adoc}"
 
 usage() {
   cat <<'USAGE'
-Usage: ./build.sh [build|validate|clean]
+Usage: ./build.sh [build|validate|adapters|check-adapters|test|clean]
 
 Commands:
-  build      Validate, generate architecture fragments, and render HTML.
-  validate   Validate and generate architecture documentation metadata.
-  clean      Remove local architecture build output.
+  build          Validate, generate architecture fragments, and render HTML.
+  validate       Validate and generate architecture documentation metadata.
+  adapters       Regenerate the thin agent adapters under adapters/.
+  check-adapters Fail if the generated agent adapters are out of date.
+  test           Run the agent adapter generator behaviour tests.
+  clean          Remove local architecture build output.
 
 The script prefers a published docs-toolbox image tagged with the local
 Dockerfile hash (df-<hash>). If that image is not available, it builds a local
@@ -43,6 +46,18 @@ run_validate() {
   ruby scripts/validate-metamodel.rb --generate
 }
 
+run_adapters() {
+  node scripts/build-agent-adapters.js
+}
+
+run_check_adapters() {
+  node scripts/check-agent-adapters.js
+}
+
+run_test() {
+  node --test test/build-agent-adapters.test.mjs
+}
+
 run_build() {
   run_validate
   mkdir -p "$BUILD_DIR"
@@ -66,6 +81,15 @@ run_local() {
       ;;
     validate)
       run_validate
+      ;;
+    adapters)
+      run_adapters
+      ;;
+    check-adapters)
+      run_check_adapters
+      ;;
+    test)
+      run_test
       ;;
     clean)
       rm -rf "$BUILD_DIR"
@@ -115,7 +139,7 @@ if [ "${DOCS_TOOLBOX_IN_CONTAINER:-}" = "1" ]; then
 fi
 
 case "$COMMAND" in
-  build|validate)
+  build|validate|adapters|check-adapters|test)
     ENGINE="$(find_engine)"
     if [ -n "$ENGINE" ]; then
       run_in_container "$ENGINE"
