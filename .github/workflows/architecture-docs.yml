@@ -24,6 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check agent adapters
+        run: ./build.sh check-adapters
+
+      - name: Test agent adapter generator
+        run: ./build.sh test
+
       - name: Build architecture HTML
         run: ./build.sh build
 

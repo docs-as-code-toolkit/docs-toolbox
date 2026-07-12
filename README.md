@@ -193,6 +193,15 @@ image from the current Dockerfile if that exact image does not exist.
 ./build.sh build
 ```
 
+It also generates the thin agent adapters that route AI agents (Codex, Vibe,
+GitHub Copilot, Cursor) to the architecture-knowledge-toolkit:
+
+```bash
+./build.sh adapters         # regenerate adapters under adapters/
+./build.sh check-adapters   # fail if the generated adapters are stale
+./build.sh test             # run the adapter generator behaviour tests
+```
+
 ### GitHub Actions (example)
 
 ```yaml
