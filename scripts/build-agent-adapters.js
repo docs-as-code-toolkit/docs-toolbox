@@ -92,30 +92,44 @@ ${generatedNotice}${body}`,
   }
 
   function renderTarget(target, skills) {
-    const localSkillsSection =
-      skills.length > 0
-        ? `\n## Local Skills
+    const hasSkills = skills.length > 0;
+
+    const localSkillsSection = hasSkills
+      ? `\n## Local Skills
 
 Paths are relative to the ${project} repository root.
 
 ${skills.map((skill) => `- \`${skill.name}\`: \`${skill.path}\``).join("\n")}
 `
-        : "";
+      : "";
+
+    const intro = hasSkills
+      ? `Keep project semantics in repository-root \`general-semantic-contracts.md\`
+and canonical \`skills/**/SKILL.md\` files. Architecture and
+software-development-lifecycle work not covered by a local skill is delegated to
+the architecture-knowledge-toolkit.`
+      : `${project} keeps no local agent skills of its own; architecture and
+software-development-lifecycle semantics are delegated to the
+architecture-knowledge-toolkit.`;
+
+    const selectStep = hasSkills
+      ? `3. Select and read the relevant skill: a local skill from the list below when
+   one applies, otherwise the matching canonical \`skills/**/SKILL.md\` from the
+   architecture-knowledge-toolkit.`
+      : `3. Follow the toolkit lookup order in \`AGENTS.md\`, then read the relevant
+   canonical \`skills/**/SKILL.md\` from the architecture-knowledge-toolkit.`;
 
     const body = `# ${target.title}
 
 This is a thin ${target.agent}-specific wrapper for the ${project}
-repository. ${project} keeps no local agent skills of its own; architecture and
-software-development-lifecycle semantics are delegated to the
-architecture-knowledge-toolkit.
+repository. ${intro}
 
 When ${target.agent} performs architecture-sensitive or SDLC work in this
 repository:
 
 1. Read repository-root \`AGENTS.md\`.
 2. Read repository-root \`general-semantic-contracts.md\`.
-3. Follow the toolkit lookup order in \`AGENTS.md\`, then read the relevant
-   canonical \`skills/**/SKILL.md\` from the architecture-knowledge-toolkit.
+${selectStep}
 4. Treat this adapter as routing guidance only.
 ${localSkillsSection}
 ## Toolkit Source Of Truth
