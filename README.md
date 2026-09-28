@@ -49,6 +49,7 @@ This image provides a ready-to-use toolchain for **Docs-as-Code pipelines**:
 - Graphviz
 - Ruby runtime (for validators, generators, and Ruby test suites)
 - Node.js and npm (for JavaScript-based generators and tests)
+- Carlito, a free font metrically compatible with Calibri (for diagrams that must match a Calibri layout)
 - Python 3
 - Common CLI utilities
 - Static web server command for previewing generated sites and presentations
