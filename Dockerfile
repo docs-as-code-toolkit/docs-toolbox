@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     nodejs \
     npm \
+    fonts-crosextra-carlito \
     && gem install --no-document asciidoctor-diagram asciidoctor-diagram-plantuml asciidoctor-revealjs \
     && rm -rf /var/lib/apt/lists/*
 
