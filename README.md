@@ -53,7 +53,7 @@ This image provides a ready-to-use toolchain for **Docs-as-Code pipelines**:
 - Python 3
 - Common CLI utilities
 - Static web server command for previewing generated sites and presentations
-- Java runtime support for Gradle/AsciidoctorJ-based documentation builds
+- Java 21 (Eclipse Temurin, LTS) for Gradle/AsciidoctorJ-based documentation builds
 
 👉 Everything preconfigured to work together.
 

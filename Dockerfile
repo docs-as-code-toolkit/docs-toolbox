@@ -1,7 +1,10 @@
 # ---------------------------
 # Base Image: Java + Tools
 # ---------------------------
-FROM openjdk:22-jdk-slim
+# The official openjdk images are no longer maintained. Temurin is, and 21 is an
+# LTS release that runs Gradle 8 and 9. The OS release is pinned too, so a new
+# Ubuntu does not arrive unannounced with a rebuild.
+FROM eclipse-temurin:21-jdk-resolute
 
 LABEL org.opencontainers.image.title="docs-toolbox" \
       org.opencontainers.image.description="A lightweight Docker image for running Docs-as-Code pipelines in a fully reproducible environment — locally and in CI." \
