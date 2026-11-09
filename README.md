@@ -213,7 +213,7 @@ jobs:
       image: ghcr.io/docs-as-code-toolkit/docs-toolbox:latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: ./gradlew build
 ```
 
